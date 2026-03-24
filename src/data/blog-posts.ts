@@ -1160,6 +1160,10 @@ export const blogPosts: BlogPost[] = [
   },
 ];
 
+// Import and merge new blog posts
+import { newBlogPosts } from "./new-blog-posts";
+blogPosts.push(...newBlogPosts);
+
 export function getPostBySlug(slug: string): BlogPost | undefined {
   return blogPosts.find((post) => post.slug === slug);
 }
