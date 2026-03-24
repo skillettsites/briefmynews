@@ -54,14 +54,14 @@ export default function DashboardPage() {
   const loadUserData = useCallback(async (userId: string) => {
     // Load topics
     const { data: topicData } = await supabase
-      .from("user_topics")
+      .from("bmn_user_topics")
       .select("topic, frequency")
       .eq("user_id", userId);
     if (topicData) setTopics(topicData);
 
     // Load source preferences
     const { data: sourceData } = await supabase
-      .from("user_sources")
+      .from("bmn_user_sources")
       .select("source_id, enabled")
       .eq("user_id", userId);
     if (sourceData) {
@@ -74,7 +74,7 @@ export default function DashboardPage() {
 
     // Load profile
     const { data: profile } = await supabase
-      .from("profiles")
+      .from("bmn_profiles")
       .select("display_name, political_lean")
       .eq("id", userId)
       .single();

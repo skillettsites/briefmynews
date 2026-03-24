@@ -1,7 +1,7 @@
 -- BriefMyNews Seed Data: News Sources
 -- Run this AFTER the schema migration
 
-INSERT INTO sources (name, slug, rss_url, category, bias_rating) VALUES
+INSERT INTO bmn_sources (name, slug, rss_url, category, bias_rating) VALUES
 -- UK News
 ('BBC News', 'bbc-news', 'https://feeds.bbci.co.uk/news/rss.xml', 'uk-news', 'centre'),
 ('The Guardian', 'guardian', 'https://www.theguardian.com/uk/rss', 'uk-news', 'centre-left'),

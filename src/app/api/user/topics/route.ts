@@ -14,7 +14,7 @@ export async function POST(request: Request) {
     }
 
     // Delete existing topics and re-insert
-    await supabase.from("user_topics").delete().eq("user_id", user_id);
+    await supabase.from("bmn_user_topics").delete().eq("user_id", user_id);
 
     if (topics.length > 0) {
       const rows = topics.map(
@@ -25,7 +25,7 @@ export async function POST(request: Request) {
         })
       );
 
-      const { error } = await supabase.from("user_topics").insert(rows);
+      const { error } = await supabase.from("bmn_user_topics").insert(rows);
       if (error) {
         return Response.json({ error: error.message }, { status: 500 });
       }

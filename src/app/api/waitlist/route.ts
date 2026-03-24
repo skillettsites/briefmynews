@@ -16,7 +16,7 @@ export async function POST(request: Request) {
 
     const supabase = getSupabaseServer();
 
-    const { error } = await supabase.from("waitlist").upsert(
+    const { error } = await supabase.from("bmn_waitlist").upsert(
       {
         email: email.toLowerCase().trim(),
         source: source || "website",

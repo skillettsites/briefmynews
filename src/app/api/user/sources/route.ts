@@ -13,7 +13,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const { error } = await supabase.from("user_sources").upsert(
+    const { error } = await supabase.from("bmn_user_sources").upsert(
       {
         user_id,
         source_id,

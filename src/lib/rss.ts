@@ -66,7 +66,7 @@ export async function cacheArticles(
   for (const article of articles) {
     if (!article.url || !article.title) continue;
 
-    await supabase.from("articles").upsert(
+    await supabase.from("bmn_articles").upsert(
       {
         source_id: sourceId,
         title: article.title,

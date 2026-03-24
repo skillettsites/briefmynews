@@ -23,7 +23,7 @@ export async function POST(request: Request) {
     if (political_lean !== undefined) updates.political_lean = political_lean;
 
     const { error } = await supabase
-      .from("profiles")
+      .from("bmn_profiles")
       .upsert({ id: user_id, ...updates }, { onConflict: "id" });
 
     if (error) {
