@@ -33,6 +33,12 @@ export default function Header() {
             Pricing
           </Link>
           <Link
+            href="/sources"
+            className="text-sm text-muted hover:text-foreground transition-colors"
+          >
+            Sources
+          </Link>
+          <Link
             href="/about"
             className="text-sm text-muted hover:text-foreground transition-colors"
           >
@@ -100,6 +106,13 @@ export default function Header() {
               onClick={() => setMenuOpen(false)}
             >
               Pricing
+            </Link>
+            <Link
+              href="/sources"
+              className="text-sm text-muted hover:text-foreground"
+              onClick={() => setMenuOpen(false)}
+            >
+              Sources
             </Link>
             <Link
               href="/about"
