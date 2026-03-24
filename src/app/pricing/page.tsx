@@ -40,6 +40,7 @@ const plans = [
     name: "Pro",
     price: "$29.99",
     period: "year",
+    monthlyPrice: "$5/month",
     description: "For serious readers who want full control over their news.",
     features: [
       { text: "Unlimited topics", included: true },
@@ -94,7 +95,7 @@ export default function PricingPage() {
             </div>
             {plan.name === "Pro" && (
               <p className="mt-1 text-xs text-muted">
-                Less than $2.50 per month
+                or $5/month. Cancel anytime.
               </p>
             )}
             <p className="mt-3 text-sm text-muted">{plan.description}</p>

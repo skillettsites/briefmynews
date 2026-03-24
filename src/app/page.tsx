@@ -315,7 +315,7 @@ export default function Home() {
                 <span className="text-muted">/year</span>
               </div>
               <p className="mt-1 text-xs text-muted">
-                That is less than $2.50 per month
+                or $5/month. Cancel anytime.
               </p>
               <ul className="mt-6 space-y-3">
                 {[
