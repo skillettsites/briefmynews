@@ -14,12 +14,19 @@ export async function POST(request: Request) {
       return Response.json({ error: "Invalid email address" }, { status: 400 });
     }
 
+    const geo_city = request.headers.get('x-vercel-ip-city') || null;
+    const geo_region = request.headers.get('x-vercel-ip-country-region') || null;
+    const geo_country = request.headers.get('x-vercel-ip-country') || null;
+
     const supabase = getSupabaseServer();
 
     const { error } = await supabase.from("bmn_waitlist").upsert(
       {
         email: email.toLowerCase().trim(),
         source: source || "website",
+        geo_city,
+        geo_region,
+        geo_country,
       },
       { onConflict: "email" }
     );
