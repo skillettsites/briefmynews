@@ -44,5 +44,34 @@ INSERT INTO bmn_sources (name, slug, rss_url, category, bias_rating) VALUES
 -- Sports
 ('BBC Sport', 'bbc-sport', 'https://feeds.bbci.co.uk/sport/rss.xml', 'sports', 'centre'),
 ('ESPN', 'espn', 'https://www.espn.com/espn/rss/news', 'sports', 'centre'),
-('Sky Sports', 'sky-sports', 'https://www.skysports.com/rss/12040', 'sports', 'centre')
+('Sky Sports', 'sky-sports', 'https://www.skysports.com/rss/12040', 'sports', 'centre'),
+-- Alternative / Independent Sources
+('Reddit - World News', 'reddit-worldnews', 'https://www.reddit.com/r/worldnews/.rss', 'alternative', 'centre'),
+('Reddit - News', 'reddit-news', 'https://www.reddit.com/r/news/.rss', 'alternative', 'centre'),
+('Reddit - Technology', 'reddit-technology', 'https://www.reddit.com/r/technology/.rss', 'alternative', 'centre'),
+('Reddit - Science', 'reddit-science', 'https://www.reddit.com/r/science/.rss', 'alternative', 'centre'),
+('Reddit - UK Politics', 'reddit-ukpolitics', 'https://www.reddit.com/r/ukpolitics/.rss', 'alternative', 'centre'),
+('Substack - Top', 'substack-top', 'https://substack.com/feed', 'alternative', 'centre'),
+('Ground News', 'ground-news', 'https://ground.news/feed', 'alternative', 'centre'),
+('The Intercept', 'the-intercept', 'https://theintercept.com/feed/?rss', 'alternative', 'left'),
+('Bellingcat', 'bellingcat', 'https://www.bellingcat.com/feed/', 'alternative', 'centre'),
+('The Canary', 'the-canary', 'https://www.thecanary.co/feed/', 'alternative', 'left'),
+('Novara Media', 'novara-media', 'https://novaramedia.com/feed/', 'alternative', 'left'),
+('Guido Fawkes', 'guido-fawkes', 'https://order-order.com/feed/', 'alternative', 'right'),
+('Spiked', 'spiked-online', 'https://www.spiked-online.com/feed/', 'alternative', 'right'),
+('UnHerd', 'unherd', 'https://unherd.com/feed/', 'alternative', 'centre-right'),
+('Tortoise Media', 'tortoise', 'https://www.tortoisemedia.com/feed/', 'alternative', 'centre'),
+('Byline Times', 'byline-times', 'https://bylinetimes.com/feed/', 'alternative', 'centre-left'),
+('The Conversation', 'the-conversation', 'https://theconversation.com/uk/articles.atom', 'alternative', 'centre'),
+('ProPublica', 'propublica', 'https://feeds.propublica.org/propublica/main', 'alternative', 'centre-left'),
+('Drudge Report', 'drudge-report', 'https://feedpress.me/drudgereportfeed', 'alternative', 'right'),
+('Joe Rogan (via RSS)', 'joe-rogan', 'https://feeds.megaphone.fm/GLT1412515089', 'alternative', 'centre-right'),
+-- Podcasts / YouTube as news sources
+('BBC Newscast', 'bbc-newscast', 'https://podcasts.files.bbci.co.uk/p09bnmxp.rss', 'podcasts', 'centre'),
+('The Rest Is Politics', 'rest-is-politics', 'https://feeds.megaphone.fm/therestispolitics', 'podcasts', 'centre'),
+('Full Disclosure (James OBrien)', 'full-disclosure', 'https://feeds.acast.com/public/shows/full-disclosure-with-james-obrien', 'podcasts', 'centre-left'),
+('PoliticsJOE', 'politicsjoe', 'https://www.youtube.com/feeds/videos.xml?channel_id=UCE_M8A5yxnLfW0KghEeajjw', 'alternative', 'centre-left'),
+('TalkTV', 'talktv', 'https://www.youtube.com/feeds/videos.xml?channel_id=UCUhby7V0mYbHaBGqsEAXEmA', 'alternative', 'right'),
+('GB News', 'gb-news', 'https://www.gbnews.com/feeds/rss', 'alternative', 'right'),
+('LBC', 'lbc', 'https://feeds.acast.com/public/shows/lbc-breaking-news', 'alternative', 'centre')
 ON CONFLICT (slug) DO NOTHING;
