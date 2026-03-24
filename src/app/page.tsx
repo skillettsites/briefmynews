@@ -277,7 +277,7 @@ export default function Home() {
               <h3 className="text-lg font-semibold text-foreground">Free</h3>
               <div className="mt-2">
                 <span className="text-4xl font-bold text-foreground">
-                  &pound;0
+                  $0
                 </span>
                 <span className="text-muted">/forever</span>
               </div>
@@ -310,12 +310,12 @@ export default function Home() {
               <h3 className="text-lg font-semibold text-foreground">Pro</h3>
               <div className="mt-2">
                 <span className="text-4xl font-bold text-foreground">
-                  &pound;29.99
+                  $29.99
                 </span>
                 <span className="text-muted">/year</span>
               </div>
               <p className="mt-1 text-xs text-muted">
-                That is less than &pound;2.50 per month
+                That is less than $2.50 per month
               </p>
               <ul className="mt-6 space-y-3">
                 {[

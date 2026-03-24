@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   authors: [{ name: "BriefMyNews" }],
   openGraph: {
     type: "website",
-    locale: "en_GB",
+    locale: "en_US",
     url: "https://briefmynews.com",
     siteName: "BriefMyNews",
     title: "BriefMyNews - Personalised News Digests Delivered to Your Inbox",

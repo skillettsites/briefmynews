@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Pricing",
   description:
-    "BriefMyNews pricing plans. Start free with 3 topics and 5 sources, or go Pro for unlimited everything at just \u00a329.99/year.",
+    "BriefMyNews pricing plans. Start free with 3 topics and 5 sources, or go Pro for unlimited everything at just $29.99/year.",
   openGraph: {
     title: "BriefMyNews Pricing",
     description:
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 const plans = [
   {
     name: "Free",
-    price: "\u00a30",
+    price: "$0",
     period: "forever",
     description: "Perfect for staying informed on a few key topics.",
     features: [
@@ -38,7 +38,7 @@ const plans = [
   },
   {
     name: "Pro",
-    price: "\u00a329.99",
+    price: "$29.99",
     period: "year",
     description: "For serious readers who want full control over their news.",
     features: [
@@ -94,7 +94,7 @@ export default function PricingPage() {
             </div>
             {plan.name === "Pro" && (
               <p className="mt-1 text-xs text-muted">
-                Less than &pound;2.50 per month
+                Less than $2.50 per month
               </p>
             )}
             <p className="mt-3 text-sm text-muted">{plan.description}</p>
@@ -171,7 +171,7 @@ export default function PricingPage() {
             },
             {
               q: "Is there a monthly payment option?",
-              a: "We currently offer annual billing only. At less than \u00a32.50 per month, we think it represents excellent value.",
+              a: "We currently offer annual billing only. At less than $2.50 per month, we think it represents excellent value.",
             },
             {
               q: "What payment methods do you accept?",
