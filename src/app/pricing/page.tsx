@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import PricingPageClient from "@/components/PricingPageClient";
 
 export const metadata: Metadata = {
-  title: "Pricing",
+  title: "BriefMyNews Pricing: Free Plan and Pro from $5/month (2026)",
   description:
-    "BriefMyNews pricing plans. Start free with 3 topics and 5 sources, or go Pro for unlimited everything at just $29.99/year or $5/month.",
+    "Start free with 3 topics and 5 sources. Go Pro for $5/month or $29.99/year to unlock unlimited topics, 63+ sources, and daily delivery. No credit card needed to start.",
   openGraph: {
-    title: "BriefMyNews Pricing",
+    title: "BriefMyNews Pricing: Free Plan and Pro from $5/month",
     description:
-      "Start free or go Pro for unlimited topics, sources, and daily delivery.",
+      "Start free with 3 topics. Pro unlocks unlimited topics, 63+ sources, and daily delivery from $5/month.",
     url: "https://briefmynews.com/pricing",
   },
   alternates: { canonical: "https://briefmynews.com/pricing" },

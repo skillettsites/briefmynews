@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About BriefMyNews: Who We Are and Why We Built It",
   description:
-    "Learn about BriefMyNews, the personalised news digest service that puts you in control of your news consumption.",
+    "BriefMyNews is a UK-based personalised news digest service. Choose your topics, pick trusted sources with bias labels, and get a clean email on your schedule. No spam, no noise.",
   openGraph: {
-    title: "About BriefMyNews",
+    title: "About BriefMyNews: Who We Are and Why We Built It",
     description:
-      "Learn about BriefMyNews, the personalised news digest service that puts you in control.",
+      "UK-based personalised news digest. Choose topics, pick sources with bias labels, set your schedule.",
     url: "https://briefmynews.com/about",
   },
   alternates: { canonical: "https://briefmynews.com/about" },

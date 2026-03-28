@@ -3,13 +3,13 @@ import Link from "next/link";
 import { blogPosts } from "@/data/blog-posts";
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: "News Consumption Tips, Media Literacy and Staying Informed (2026)",
   description:
-    "News consumption tips, media literacy guides, and expert advice on building a balanced information diet. From the BriefMyNews team.",
+    "Practical guides on building a balanced news diet, spotting media bias, beating news fatigue, and choosing trustworthy sources. 37+ articles from the BriefMyNews team.",
   openGraph: {
-    title: "BriefMyNews Blog",
+    title: "BriefMyNews Blog: News Tips and Media Literacy Guides",
     description:
-      "Tips on personalised news, media literacy, and staying informed without the noise.",
+      "Practical guides on building a balanced news diet, spotting bias, and staying informed without burnout.",
     url: "https://briefmynews.com/blog",
   },
   alternates: { canonical: "https://briefmynews.com/blog" },

@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "How It Works",
+  title: "How BriefMyNews Works: Personalised News in 3 Simple Steps",
   description:
-    "Learn how BriefMyNews creates your personalised news digest in three simple steps. Pick topics, choose sources, set your schedule.",
+    "Pick your topics, choose from 63+ news sources with bias labels, and set your delivery schedule. Your personalised news digest arrives by email, ready in under 5 minutes.",
   openGraph: {
-    title: "How BriefMyNews Works",
+    title: "How BriefMyNews Works: Personalised News in 3 Steps",
     description:
-      "Three steps to a personalised news digest. Pick topics, choose sources, set your schedule.",
+      "Pick topics, choose from 63+ sources with bias labels, set your schedule. Personalised news digest by email.",
     url: "https://briefmynews.com/how-it-works",
   },
   alternates: { canonical: "https://briefmynews.com/how-it-works" },
