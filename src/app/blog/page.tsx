@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { blogPosts } from "@/data/blog-posts";
+import { blogPosts } from "@/data/all-blog-posts";
 
 export const metadata: Metadata = {
   title: "News Consumption Tips, Media Literacy and Staying Informed (2026)",

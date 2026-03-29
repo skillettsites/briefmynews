@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { blogPosts, getPostBySlug, getAllSlugs } from "@/data/blog-posts";
+import { blogPosts, getPostBySlug, getAllSlugs } from "@/data/all-blog-posts";
 
 export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -39,7 +39,6 @@ export default async function BlogPost({
   const post = getPostBySlug(slug);
   if (!post) notFound();
 
-  // Get related posts (exclude current, pick 3 most recent)
   const relatedPosts = blogPosts
     .filter((p) => p.slug !== post.slug)
     .sort(
@@ -226,16 +225,16 @@ export default async function BlogPost({
         {/* CTA */}
         <section className="mt-16 glass-card p-8 text-center">
           <h2 className="text-xl font-bold text-foreground">
-            Ready to take control of your news?
+            Stop scrolling. Start reading what matters.
           </h2>
           <p className="mt-2 text-sm text-muted">
-            Choose your topics, pick your sources, set your schedule. Free to start.
+            Pick your topics, choose your sources, set your schedule. Your first personalised digest arrives in minutes.
           </p>
           <Link
             href="/signup"
             className="mt-4 inline-block rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
           >
-            Get Started Free
+            Get Your Free Digest
           </Link>
         </section>
       </article>
