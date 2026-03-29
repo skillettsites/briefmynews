@@ -165,14 +165,14 @@ export default function Home() {
             Nothing&nbsp;else.
           </h1>
           <p className="animate-fade-in-up stagger-2 mx-auto mt-6 max-w-2xl text-lg text-muted sm:text-xl">
-            A personalised news digest that delivers only what matters to you.
-            Pick your topics, choose your sources, set your frequency.
+            Stop wasting 70 minutes a day scrolling headlines that do not matter to you.
+            Pick your topics, choose your sources, set your frequency, and get a clean digest delivered on your schedule.
           </p>
           <div className="animate-fade-in-up stagger-3 mt-10 flex justify-center">
             <WaitlistForm />
           </div>
           <p className="animate-fade-in-up stagger-4 mt-4 text-xs text-muted">
-            Join 0 others already on the waitlist. No spam, ever.
+            Free to start. No credit card needed. Your first digest arrives in minutes.
           </p>
         </div>
       </section>
@@ -320,15 +320,17 @@ export default function Home() {
       <section className="border-t border-border bg-background py-16 sm:py-20">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
           <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
-            Ready to take back your mornings?
+            Reclaim your mornings in under 2 minutes
           </h2>
           <p className="mt-4 text-muted">
-            Join the waitlist and be the first to get your personalised news
-            digest.
+            Sign up, pick your topics, and your first personalised digest will land in your inbox today. No algorithms deciding for you. No noise. Just the news you actually need.
           </p>
           <div className="mt-8 flex justify-center">
             <WaitlistForm source="homepage-footer" />
           </div>
+          <p className="mt-3 text-xs text-muted">
+            Free plan available. Upgrade to Pro for unlimited topics and daily delivery.
+          </p>
         </div>
       </section>
     </>
