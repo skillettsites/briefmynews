@@ -1856,4 +1856,123 @@ export const newBlogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "information-overload-solutions-how-to-stay-informed-without-overwhelm",
+    title: "Information Overload Solutions: How to Stay Informed Without Overwhelm",
+    description:
+      "Struggling with too much news? Learn practical strategies to cut through the noise, filter what matters, and build a sustainable information diet that keeps you informed without the stress.",
+    publishedAt: "2026-03-29",
+    content: `
+      <p>The average person encounters over 10,000 messages, notifications, headlines, and updates every single day. That is not a typo. Between social media, news apps, email newsletters, group chats, and push notifications, we are swimming in more information than any generation before us. And it is taking a toll.</p>
+
+      <p>Information overload is not just a buzzword. It is a real cognitive problem that leads to decision fatigue, anxiety, reduced productivity, and, ironically, worse decision-making. The more information we try to process, the less effectively we process any of it.</p>
+
+      <p>But the solution is not to switch off entirely. The solution is to build systems that filter, prioritise, and deliver the information you actually need, while blocking out the rest.</p>
+
+      <h2>Why Information Overload Is Getting Worse</h2>
+
+      <p>Three forces are accelerating the problem:</p>
+      <ul>
+        <li><strong>More sources than ever.</strong> In 2010, you might have followed a few news websites and a newspaper. In 2026, there are millions of blogs, podcasts, newsletters, social accounts, and news apps competing for your attention.</li>
+        <li><strong>Algorithms designed for engagement, not understanding.</strong> Social media and news feeds are optimised to keep you scrolling. Outrage, controversy, and sensationalism get promoted because they generate clicks, not because they help you make better decisions.</li>
+        <li><strong>Always-on notifications.</strong> Your phone buzzes dozens of times a day with "breaking news" that is rarely urgent and almost never actionable. Each notification fragments your attention and pulls you back into the scroll.</li>
+      </ul>
+
+      <p>The result? A 2025 study from the American Psychological Association found that 56% of adults say keeping up with the news causes them significant stress. And a growing body of research links excessive information consumption to impaired memory, poor sleep, and chronic anxiety.</p>
+
+      <h2>The Core Principle: Intentional Consumption</h2>
+
+      <p>The single most important shift you can make is moving from passive consumption to intentional consumption. Passive consumption means opening your phone and absorbing whatever the algorithm serves you. Intentional consumption means deciding in advance what you want to know, where you will get it, and how much time you will spend on it.</p>
+
+      <p>This is not about missing important stories. It is about trusting a system to surface what matters and letting everything else go.</p>
+
+      <h2>7 Practical Solutions for Information Overload</h2>
+
+      <h3>1. Define your information needs</h3>
+      <p>Before you can filter effectively, you need to know what actually matters to you. Write down the 3-5 topics you genuinely need to follow for your work, your health, your community, or your personal interests. Everything else is optional. Be ruthless: "current events" is too broad. "UK technology regulation" or "local council planning decisions" is specific enough to be useful.</p>
+
+      <h3>2. Replace feeds with digests</h3>
+      <p>Infinite feeds are the root cause of most information overload. They have no end point, no clear signal that you are "done," and they are engineered to keep you scrolling. Digests are the opposite: a finite summary of what happened, delivered on a schedule you choose.</p>
+
+      <p>With <a href="/">BriefMyNews</a>, you choose your <a href="/sources">sources</a> and topics, set your preferred frequency, and receive a clean digest in your inbox. You read it, you are caught up, and you move on. No infinite scroll, no algorithmic rabbit holes. <a href="/pricing">Pro subscribers</a> get daily digests with unlimited topics and sources, so even niche interests are covered.</p>
+
+      <h3>3. Audit and reduce your sources</h3>
+      <p>How many news apps are on your phone right now? How many newsletters land in your inbox each week? Most people are subscribed to far more sources than they actually read. Audit your information inputs:</p>
+      <ul>
+        <li>Unsubscribe from newsletters you have not opened in the past month</li>
+        <li>Delete news apps that duplicate what you get elsewhere</li>
+        <li>Unfollow social accounts that post outrage rather than insight</li>
+        <li>Consolidate into 2-3 trusted sources that cover your key topics well</li>
+      </ul>
+
+      <h3>4. Set a time budget</h3>
+      <p>Decide how many minutes per day you will spend consuming news. For most people, 10-20 minutes is more than enough to stay well-informed. Set a timer if needed. The constraint forces you to focus on quality: when you only have 15 minutes, you naturally gravitate toward articles that inform rather than articles that provoke.</p>
+
+      <h3>5. Turn off push notifications</h3>
+      <p>This one change can transform your relationship with information. Breaking news alerts interrupt your focus, trigger anxiety, and are almost never truly urgent for your life. Go into your phone settings right now and disable news notifications from every app. If something genuinely important happens, you will hear about it from people around you or during your scheduled reading time.</p>
+
+      <h3>6. Use bias labels to read smarter</h3>
+      <p>Part of information overload is the feeling that you cannot trust what you are reading. Bias-labelled sources help you read with context. When you know a source leans left or right, you can weigh its framing accordingly and spend less mental energy trying to figure out what is spin and what is fact.</p>
+
+      <p>BriefMyNews <a href="/sources">labels every source</a> with its political lean, and a bias slider lets you balance your reading across perspectives. This means less second-guessing and more confident consumption.</p>
+
+      <h3>7. Schedule your consumption</h3>
+      <p>Read the news at the same time each day, ideally not first thing in the morning and not right before bed. Morning news consumption can set an anxious tone for your entire day, and late-night reading disrupts sleep. Many people find mid-morning or early afternoon works best: you are alert, focused, and have enough of the day ahead to process what you have read without carrying it into your sleep.</p>
+
+      <h2>How a Personalised Digest Solves the Problem</h2>
+
+      <p>The fundamental problem with information overload is that most systems push content at you without your input. A personalised digest flips this model. You tell the system what you care about, and it delivers only that. Nothing more, nothing less.</p>
+
+      <p>Here is how this works in practice with <a href="/">BriefMyNews</a>:</p>
+      <ul>
+        <li><strong>You choose your topics</strong>, as specific as you want. "Renewable energy policy in Europe" is a perfectly valid topic, not just "energy."</li>
+        <li><strong>You choose your sources</strong>, picking from a <a href="/sources">library of sources</a> with clear bias labels so you know the perspective of each one.</li>
+        <li><strong>You choose your schedule.</strong> <a href="/pricing">Pro members</a> can get daily digests. Free users receive weekly summaries. Either way, the news comes to you on your terms.</li>
+        <li><strong>You read and you are done.</strong> No infinite feed. No "you might also like" rabbit holes. A clean, finite update that respects your time.</li>
+      </ul>
+
+      <h2>The Long-Term Benefits of Managing Information Overload</h2>
+
+      <p>People who adopt intentional consumption habits consistently report:</p>
+      <ul>
+        <li><strong>Lower anxiety.</strong> When you stop absorbing a constant stream of bad news, your stress levels drop noticeably within days.</li>
+        <li><strong>Better focus.</strong> Without constant notifications and the urge to "just check" the news, your ability to concentrate on deep work improves.</li>
+        <li><strong>More informed decisions.</strong> Counterintuitively, consuming less information but from better sources leads to a more accurate understanding of the world.</li>
+        <li><strong>Reclaimed time.</strong> Most people who audit their news consumption find they were spending 45-90 minutes a day on news without realising it. That is time you get back for reading, exercise, family, or hobbies.</li>
+      </ul>
+
+      <h2>Start Today</h2>
+
+      <p>You do not need a dramatic detox or a complete news blackout. Start with one change: replace your noisiest information source with a quiet, intentional one. Swap the infinite scroll for a digest. Turn off one set of push notifications. Unsubscribe from five newsletters you never read.</p>
+
+      <p>If you want a tool that is built specifically for this, <a href="/signup">try BriefMyNews</a>. The free plan gives you 3 topics and 5 sources with a weekly digest. <a href="/pricing">Pro ($5/month)</a> unlocks unlimited topics, unlimited sources, and daily delivery, so you can stay on top of everything that matters to you without any of the noise.</p>
+    `,
+    faqs: [
+      {
+        question: "What is information overload?",
+        answer:
+          "Information overload occurs when you are exposed to more information than your brain can effectively process. It leads to decision fatigue, increased anxiety, reduced productivity, and paradoxically, poorer decision-making. In the context of news, it manifests as feeling overwhelmed by headlines, notifications, and the constant pressure to stay up to date.",
+      },
+      {
+        question: "How do you solve information overload?",
+        answer:
+          "The most effective solutions are: defining your specific information needs, replacing infinite feeds with finite digests, reducing and auditing your sources, setting a daily time budget for news consumption, turning off push notifications, and scheduling your reading at consistent times. Tools like BriefMyNews help by delivering only the topics and sources you choose, on a schedule you set.",
+      },
+      {
+        question: "How much news should you consume per day?",
+        answer:
+          "Research suggests that 10-20 minutes of focused reading from trusted sources is enough to stay well-informed. The quality of what you read matters far more than the quantity. One in-depth analysis piece is worth more than 50 skimmed headlines.",
+      },
+      {
+        question: "Is it okay to stop reading the news entirely?",
+        answer:
+          "Complete avoidance can leave you uninformed about things that genuinely affect your life. A better approach is structured consumption: choose a few trusted sources, set a time limit, and use a digest format so you have a clear beginning and end to your daily reading.",
+      },
+      {
+        question: "What is the best tool for managing information overload?",
+        answer:
+          "It depends on your needs. For news specifically, BriefMyNews lets you choose exactly what topics and sources you want, delivered as a clean email digest on your schedule. For broader productivity, screen time tools, notification settings, and RSS readers can also help reduce the volume of information competing for your attention.",
+      },
+    ],
+  },
 ];
