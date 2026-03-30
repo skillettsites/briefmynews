@@ -44,6 +44,9 @@ export const metadata: Metadata = {
     description:
       "Your news. Your sources. Your schedule. Nothing else.",
   },
+  alternates: {
+    canonical: "/",
+  },
   robots: {
     index: true,
     follow: true,
