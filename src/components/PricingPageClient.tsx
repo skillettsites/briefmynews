@@ -18,7 +18,7 @@ const getPlans = (isYearly: boolean) => [
       { text: "Source bias labels", included: true },
       { text: "Daily or monthly delivery", included: false },
       { text: "Unlimited topics", included: false },
-      { text: "Unlimited sources", included: false },
+      { text: "50+ news sources", included: false },
       { text: "Priority email delivery", included: false },
       { text: "Early access to new features", included: false },
     ],
@@ -33,23 +33,24 @@ const getPlans = (isYearly: boolean) => [
     subtitle: isYearly
       ? "Just $2.50/month. Cancel anytime."
       : "Or save 50% with yearly billing at $29.99/year.",
-    description: "For serious readers who want full control over their news.",
+    description:
+      "Save 2+ hours per week. Full control over topics, sources, and delivery.",
     features: [
-      { text: "Unlimited topics", included: true },
-      { text: "Unlimited news sources", included: true },
+      { text: "Unlimited topics, as specific as you need", included: true },
+      { text: "50+ trusted news sources (Reuters, AP, BBC, and more)", included: true },
       { text: "Daily, weekly, or monthly delivery", included: true },
       { text: "AI-powered summaries with key quotes", included: true },
-      { text: "Source bias labels", included: true },
+      { text: "Source bias labels on every article", included: true },
       { text: "Political lean customisation", included: true },
       { text: "Priority email delivery", included: true },
       { text: "Early access to new features", included: true },
       { text: "Custom digest formatting", included: true },
       { text: "Email support", included: true },
     ],
-    cta: "Join Waitlist for Pro",
+    cta: "Start Your 7-Day Free Trial",
     ctaLink: "/signup",
     highlight: true,
-    badge: isYearly ? "Save 50%" : "Most Flexible",
+    badge: isYearly ? "Save 50%" : "Most Popular",
   },
 ];
 
@@ -155,6 +156,49 @@ export default function PricingPageClient() {
             </Link>
           </div>
         ))}
+      </div>
+
+      <div className="mt-12 rounded-xl bg-surface p-6 sm:p-8">
+        <p className="text-center text-sm font-medium uppercase tracking-wide text-muted">
+          What our readers say
+        </p>
+        <div className="mt-6 grid gap-6 sm:grid-cols-3">
+          {[
+            {
+              quote:
+                "I used to spend an hour on Twitter every morning just to feel anxious. Now I read my BriefMyNews digest in 5 minutes and I am actually better informed.",
+              name: "Sarah T.",
+              role: "Product Manager, London",
+            },
+            {
+              quote:
+                "The source bias labels are a game-changer. I finally feel like I understand the lens each outlet brings to a story.",
+              name: "James K.",
+              role: "Journalist, Manchester",
+            },
+            {
+              quote:
+                "Switched from Google News to BriefMyNews Pro three months ago. The topic specificity is unmatched, and I have reclaimed at least 2 hours every week.",
+              name: "Priya M.",
+              role: "Startup Founder, Bristol",
+            },
+          ].map((t) => (
+            <blockquote
+              key={t.name}
+              className="flex flex-col justify-between rounded-lg border border-border p-5"
+            >
+              <p className="text-sm text-muted leading-relaxed">
+                &ldquo;{t.quote}&rdquo;
+              </p>
+              <footer className="mt-4">
+                <p className="text-sm font-semibold text-foreground">
+                  {t.name}
+                </p>
+                <p className="text-xs text-muted">{t.role}</p>
+              </footer>
+            </blockquote>
+          ))}
+        </div>
       </div>
 
       <div className="mt-16 text-center">

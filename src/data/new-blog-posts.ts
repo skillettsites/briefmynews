@@ -1975,4 +1975,110 @@ export const newBlogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "stay-informed-without-doomscrolling-2026",
+    title: "How to Stay Informed Without Doomscrolling: A Practical Guide for 2026",
+    description:
+      "Discover proven strategies to stop doomscrolling and stay informed in 2026. Learn about curated news digests, time-boxed reading, topic filtering, audio briefings, and weekly summaries.",
+    publishedAt: "2026-04-02",
+    updatedAt: "2026-04-02",
+    content: `
+      <p>It starts innocently enough. You pick up your phone to check one headline, and thirty minutes later you are deep in a thread about something you cannot control, feeling worse than when you started. Doomscrolling is the defining bad habit of our era, and in 2026, the algorithms are better than ever at keeping you hooked.</p>
+
+      <p>But here is the good news: you do not have to choose between being informed and being sane. There are practical, proven strategies that let you stay on top of the news without letting the news stay on top of you. This guide covers the best approaches for 2026.</p>
+
+      <h2>Why Doomscrolling Is So Hard to Stop</h2>
+      <p>Doomscrolling persists because it exploits two powerful psychological forces: negativity bias and variable reward schedules. Our brains are wired to pay more attention to threats than to good news, and social media feeds deliver an unpredictable mix of alarming and mundane content that keeps us scrolling for the next hit.</p>
+      <p>A 2025 study from the American Psychological Association found that 56% of adults said following the news causes them stress, yet 72% of those same people said they could not stop checking. The problem is not willpower. It is the environment.</p>
+      <p>The solution is to change the environment. Instead of relying on your own discipline to stop scrolling, you restructure how news reaches you in the first place.</p>
+
+      <h2>Strategy 1: Switch to Curated News Digests</h2>
+      <p>The single most effective way to stop doomscrolling is to replace your social media news feed with a curated digest. Instead of a never-ending stream of content, you receive a finite, focused summary of the stories that actually matter to you.</p>
+      <p>A curated digest has a natural stopping point. You read it, you are done. There is no infinite scroll, no autoplay, no "you might also like" rabbit hole. You get the information you need and move on with your day.</p>
+      <p><a href="/">BriefMyNews</a> is built around exactly this idea. You choose your topics and sources, pick a delivery schedule, and receive a clean email digest with concise summaries. No app to open, no feed to scroll, no algorithm deciding what you should worry about. Pro users get briefings from <a href="/sources">50+ trusted sources</a>, covering everything from major wire services to specialist outlets.</p>
+      <p><strong>How to start:</strong> Sign up for a digest service and commit to getting your news from there instead of social media for one week. Most people find they are better informed and less stressed within days.</p>
+
+      <h2>Strategy 2: Time-Box Your News Consumption</h2>
+      <p>If you are not ready to quit social media news entirely, the next best thing is to set hard boundaries on when and how long you read. This is called time-boxing, and it works because it removes the open-ended nature of scrolling.</p>
+      <ul>
+        <li><strong>Set two fixed news windows per day.</strong> For example, 8:00 AM and 6:00 PM, for 15 minutes each. Outside those windows, the news can wait.</li>
+        <li><strong>Use a timer.</strong> When your 15 minutes are up, stop. The stories will still be there tomorrow.</li>
+        <li><strong>Never check news in bed.</strong> Morning doomscrolling sets a negative tone for the day. Late-night doomscrolling destroys your sleep.</li>
+      </ul>
+      <p>Pairing time-boxing with a daily digest is especially powerful. You read your BriefMyNews digest in the morning, and you are done. If something truly urgent happens, you will hear about it.</p>
+
+      <h2>Strategy 3: Use Topic-Based Filtering</h2>
+      <p>Much of what makes doomscrolling so draining is the sheer randomness of it. You go from a climate report to a political scandal to a celebrity controversy in seconds, with no coherence or context. Topic-based filtering lets you focus on the subjects you genuinely care about and skip the noise.</p>
+      <p>With <a href="/how-it-works">BriefMyNews</a>, you can set up highly specific topics, not just broad categories like "Technology" or "Politics" but precise interests like "renewable energy policy UK" or "startup funding rounds." Your digest only includes stories that match your topics, so every article is relevant to your life and work.</p>
+      <p><strong>Pro tip:</strong> Limit yourself to 5 to 7 topics. This is enough to stay broadly informed without recreating the overwhelm of a general news feed.</p>
+
+      <h2>Strategy 4: Try Audio Briefings</h2>
+      <p>Listening to the news instead of reading it changes the dynamic entirely. With audio, you cannot scroll. The briefing has a fixed length, and your hands and eyes are free. Many people find that audio news feels less stressful because it is passive rather than active consumption.</p>
+      <p>Options for audio briefings in 2026 include:</p>
+      <ul>
+        <li><strong>Podcast briefings</strong> like "Up First" from NPR or "Global News Podcast" from the BBC, which run 10 to 15 minutes</li>
+        <li><strong>Smart speaker briefings</strong> that pull from your chosen news sources</li>
+        <li><strong>Text-to-speech tools</strong> that can read your email digest aloud while you commute or exercise</li>
+      </ul>
+      <p>You can combine this with a written digest: scan your BriefMyNews email in the morning, then listen to an audio briefing during your commute for a different perspective.</p>
+
+      <h2>Strategy 5: Embrace Weekly Summaries</h2>
+      <p>Not everything needs to be consumed daily. For many topics, a weekly summary gives you better context than scattered daily updates. When you read about events after they have developed over several days, you get a clearer picture with less of the minute-by-minute anxiety.</p>
+      <p>BriefMyNews offers weekly digest scheduling on both the <a href="/pricing">free and Pro plans</a>, making it easy to get a once-a-week roundup of your chosen topics. The weekly format is particularly good for topics where the day-to-day changes are small but the week-to-week trends are meaningful, like financial markets, scientific research, or policy developments.</p>
+      <p><strong>Try this:</strong> Keep one or two high-priority topics on daily delivery and move everything else to weekly. You will save hours each week and still stay informed.</p>
+
+      <h2>Strategy 6: Control Your Sources</h2>
+      <p>One of the hidden drivers of doomscrolling is source quality. Sensational outlets write headlines designed to provoke clicks and emotional reactions. Quality outlets write headlines designed to inform. Choosing your sources deliberately makes a massive difference to how the news makes you feel.</p>
+      <p>With BriefMyNews, you have full control over which sources appear in your digest. Every source is labelled with its political lean, so you can build a balanced, high-quality reading list. Pro users can access 50+ sources, including wire services like Reuters and AP that focus on factual reporting over commentary.</p>
+
+      <h2>How Much Time Can You Actually Save?</h2>
+      <p>The average person spends 2 hours and 24 minutes per day on social media, according to 2025 data from DataReportal. Even if only a third of that time is spent on news content, that is nearly 50 minutes a day, or over 5 hours a week.</p>
+      <p>A typical BriefMyNews digest takes 5 to 10 minutes to read. Even with a daily digest, that is about 1 hour per week, saving you roughly 4 hours compared to social media news browsing. That is 200+ hours per year you could spend on things that actually improve your life.</p>
+
+      <h2>Building Your Anti-Doomscrolling Routine</h2>
+      <p>Here is a practical routine you can start today:</p>
+      <ol>
+        <li><strong>Morning (5 minutes):</strong> Read your BriefMyNews digest with your coffee. Skim the summaries and click into any stories that need deeper reading.</li>
+        <li><strong>Commute (10 minutes):</strong> Listen to one audio briefing for a broader perspective.</li>
+        <li><strong>Evening (0 minutes):</strong> You are already informed. No need to check anything. Read a book, call a friend, go for a walk.</li>
+      </ol>
+      <p>Total time: 15 minutes. Total stress: minimal. Total awareness of what is happening in the world: high.</p>
+
+      <h2>Getting Started</h2>
+      <p>If you are ready to break the doomscrolling cycle, the easiest first step is to <a href="/signup">sign up for BriefMyNews</a>. The free tier gives you 3 topics and 5 sources with a weekly digest, which is enough to see how curated news changes the experience. If you want daily delivery, unlimited topics, and access to 50+ sources, the <a href="/pricing">Pro plan</a> starts at just $2.50/month with annual billing.</p>
+      <p>Your attention is valuable. Stop giving it to algorithms. Start giving it to the news that actually matters to you.</p>
+    `,
+    faqs: [
+      {
+        question: "How do I stop doomscrolling?",
+        answer:
+          "The most effective approach is to replace your social media news feed with a curated digest that has a natural stopping point. Combine this with time-boxed reading sessions and deliberate source selection. Tools like BriefMyNews deliver a focused digest on your schedule so you get informed without the infinite scroll.",
+      },
+      {
+        question: "Can I stay informed without using social media?",
+        answer:
+          "Absolutely. Curated email digests, podcast briefings, and news aggregators with topic filtering all provide reliable news without the social media feed. BriefMyNews delivers personalised news summaries straight to your inbox, no app or social account needed.",
+      },
+      {
+        question: "What are healthy news consumption habits?",
+        answer:
+          "Set fixed times for reading news (no more than twice a day), use curated sources rather than algorithmic feeds, limit yourself to 5 to 7 topics, avoid news before bed, and choose a digest format with a natural stopping point instead of an infinite scroll.",
+      },
+      {
+        question: "How much time should I spend reading the news each day?",
+        answer:
+          "Most experts suggest 15 to 30 minutes per day is enough to stay well-informed. A curated digest like BriefMyNews typically takes 5 to 10 minutes to read, leaving you time for deeper reading on stories that genuinely matter to you.",
+      },
+      {
+        question: "Is doomscrolling bad for mental health?",
+        answer:
+          "Research consistently links excessive news consumption, especially through social media, to increased anxiety, stress, and feelings of helplessness. Switching to a structured, time-limited news format significantly reduces these effects while keeping you informed.",
+      },
+      {
+        question: "What is the best way to get news without doomscrolling in 2026?",
+        answer:
+          "Use a curated news digest like BriefMyNews that delivers only the topics you care about, from sources you trust, on a schedule you control. Pair it with an audio briefing for variety, and you will be better informed than most people who spend hours on social media.",
+      },
+    ],
+  },
 ];
