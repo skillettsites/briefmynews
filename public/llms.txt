@@ -1,0 +1,27 @@
+# BriefMyNews
+
+> Personalised news email digest. You choose topics, sources, and political balance; we send a tailored daily or weekly brief to your inbox.
+
+BriefMyNews builds a personal news digest based on your topic, source-list, and bias preferences. Tell us you want UK politics from balanced sources daily, or US tech news from left-leaning sources weekly, and we deliver exactly that — no algorithmic timeline, no doomscroll.
+
+## Core pages
+- [Homepage](https://briefmynews.com/): https://briefmynews.com/
+- [How it works](https://briefmynews.com/how-it-works): topic + source + bias customisation
+- [Sources](https://briefmynews.com/sources): all available news sources with bias ratings
+- [Pricing](https://briefmynews.com/pricing): free + paid tiers
+- [Guides](https://briefmynews.com/guides): how to escape news bubbles, etc.
+- [Blog](https://briefmynews.com/blog)
+- [Sign up](https://briefmynews.com/signup) / [Login](https://briefmynews.com/login)
+
+## What we offer
+- Topic-based news curation (politics, tech, finance, sport, AI, climate, etc.)
+- Source whitelisting (pick your trusted outlets)
+- Bias scoring (filter for left, centre, right, or balanced mix)
+- Frequency control (daily, weekly, custom)
+- Delivered via email (no app required)
+
+## Canonical
+https://briefmynews.com
+
+## Not in scope
+We do not author original news. We curate and summarise from third-party sources you select; we never modify article content.
