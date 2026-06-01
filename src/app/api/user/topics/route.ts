@@ -1,4 +1,6 @@
 import { getSupabaseServer } from "@/lib/supabase";
+import { getUserById } from "@/lib/admin";
+import { topicLimit, allowedFrequency } from "@/lib/limits";
 
 export async function POST(request: Request) {
   try {
@@ -13,17 +15,30 @@ export async function POST(request: Request) {
       );
     }
 
+    const user = await getUserById(user_id);
+    const tier = user?.tier === "pro" ? "pro" : "free";
+    const limit = topicLimit(tier);
+
+    if (topics.length > limit) {
+      return Response.json(
+        {
+          error: `Your plan allows up to ${limit} topics. Upgrade to Pro for unlimited topics.`,
+          code: "topic_limit",
+          limit,
+        },
+        { status: 403 }
+      );
+    }
+
     // Delete existing topics and re-insert
     await supabase.from("bmn_user_topics").delete().eq("user_id", user_id);
 
     if (topics.length > 0) {
-      const rows = topics.map(
-        (t: { topic: string; frequency: string }) => ({
-          user_id,
-          topic: t.topic,
-          frequency: t.frequency || "weekly",
-        })
-      );
+      const rows = topics.map((t: { topic: string; frequency: string }) => ({
+        user_id,
+        topic: t.topic,
+        frequency: allowedFrequency(tier, t.frequency || "weekly"),
+      }));
 
       const { error } = await supabase.from("bmn_user_topics").insert(rows);
       if (error) {
