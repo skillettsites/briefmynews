@@ -52,27 +52,41 @@ export function expandTopic(topic: string): string[] {
 export interface Scorable {
   title?: string | null;
   description?: string | null;
+  full_text?: string | null;
 }
 
-// Relevance 0..1. Phrase hits in the title weigh most.
+function escapeRegex(s: string): string {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+// Match a term as a whole word, case-insensitive. Critical for short tokens
+// like "ai" or "llm" — substring matching makes them hit "paid", "again",
+// "main", "small", etc., which floods digests with garbage.
+function matchesWord(haystack: string, term: string): boolean {
+  if (!term || !haystack) return false;
+  const re = new RegExp(`\\b${escapeRegex(term)}\\b`, "i");
+  return re.test(haystack);
+}
+
+// Relevance 0..1. Title hits weigh more than body hits.
 export function scoreArticle(article: Scorable, expandedTerms: string[]): number {
-  const title = (article.title || "").toLowerCase();
-  const desc = (article.description || "").toLowerCase();
-  if (!title && !desc) return 0;
+  const title = article.title || "";
+  const desc = article.description || "";
+  const body = article.full_text || "";
+  if (!title && !desc && !body) return 0;
 
   let hits = 0;
   let titleHits = 0;
   for (const term of expandedTerms) {
     if (!term) continue;
-    if (title.includes(term)) {
+    if (matchesWord(title, term)) {
       hits += 1;
       titleHits += 1;
-    } else if (desc.includes(term)) {
+    } else if (matchesWord(desc, term) || matchesWord(body, term)) {
       hits += 1;
     }
   }
   if (hits === 0) return 0;
-  // Normalise: a couple of solid hits should already be "relevant".
   const base = Math.min(1, hits / 3);
   const titleBoost = Math.min(0.3, titleHits * 0.12);
   return Math.min(1, base + titleBoost);
