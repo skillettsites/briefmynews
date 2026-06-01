@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { supabase } from "@/lib/supabase";
 
 export default function SignupPage() {
   const [email, setEmail] = useState("");
@@ -22,23 +21,27 @@ export default function SignupPage() {
       return;
     }
 
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: { display_name: displayName },
-        emailRedirectTo: `${window.location.origin}/dashboard`,
-      },
-    });
+    try {
+      const res = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password, displayName }),
+      });
+      const data = await res.json();
 
-    if (error) {
+      if (res.ok) {
+        setStatus("success");
+        setMessage(
+          `Almost done. We've sent a confirmation link to ${email}. Click it to activate your account.`
+        );
+        setPassword("");
+      } else {
+        setStatus("error");
+        setMessage(data.error || "Could not create your account. Please try again.");
+      }
+    } catch {
       setStatus("error");
-      setMessage(error.message);
-    } else {
-      setStatus("success");
-      setMessage(
-        "Account created. Please check your email to confirm your address."
-      );
+      setMessage("Network error. Please try again.");
     }
   }
 
