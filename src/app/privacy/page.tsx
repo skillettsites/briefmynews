@@ -47,8 +47,8 @@ export default function PrivacyPage() {
               open rates, and click-through rates to improve our service.
             </li>
             <li>
-              <strong className="text-foreground">Waitlist data:</strong> email address and
-              signup source for those joining before launch.
+              <strong className="text-foreground">Early-access sign-ups:</strong> email
+              address and source page, for people who sign up before launch.
             </li>
           </ul>
         </section>
@@ -63,7 +63,7 @@ export default function PrivacyPage() {
             <li>Generate and deliver your personalised news digests</li>
             <li>Improve our article matching and summary quality</li>
             <li>Send service-related communications (e.g., account updates)</li>
-            <li>Notify waitlist members when the service launches</li>
+            <li>Notify early-access sign-ups when the service launches</li>
           </ul>
         </section>
 

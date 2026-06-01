@@ -23,7 +23,7 @@ export default function WaitlistForm({ source = "homepage" }: { source?: string 
 
       if (res.ok) {
         setStatus("success");
-        setMessage("You are on the list. We will be in touch soon.");
+        setMessage("Thanks. Check your inbox for confirmation.");
         setEmail("");
       } else {
         setStatus("error");
