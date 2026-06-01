@@ -44,8 +44,11 @@ export default function DashboardPage() {
   const [topics, setTopics] = useState<UserTopic[]>([]);
   const [newTopic, setNewTopic] = useState("");
 
-  // Sources state
+  // Sources state. enabledSources keys are source slugs (from sources-data).
+  // sourceIdBySlug bridges to the DB layer (bmn_user_sources stores source_id).
   const [enabledSources, setEnabledSources] = useState<Set<string>>(new Set());
+  const [sourceIdBySlug, setSourceIdBySlug] = useState<Map<string, number>>(new Map());
+  const [sourceError, setSourceError] = useState<string>("");
 
   // Settings state
   const [displayName, setDisplayName] = useState("");
@@ -59,7 +62,20 @@ export default function DashboardPage() {
       .eq("user_id", userId);
     if (topicData) setTopics(topicData);
 
-    // Load source preferences
+    // Build slug<->id bridge from bmn_sources so toggleSource can call the
+    // /api/user/sources route (which requires source_id, not slug).
+    const { data: srcRows } = await supabase
+      .from("bmn_sources")
+      .select("id, slug");
+    const slugById = new Map<number, string>();
+    const idBySlug = new Map<string, number>();
+    (srcRows || []).forEach((s: { id: number; slug: string }) => {
+      slugById.set(s.id, s.slug);
+      idBySlug.set(s.slug, s.id);
+    });
+    setSourceIdBySlug(idBySlug);
+
+    // Load source preferences (translate stored source_id -> slug for the UI).
     const { data: sourceData } = await supabase
       .from("bmn_user_sources")
       .select("source_id, enabled")
@@ -67,7 +83,10 @@ export default function DashboardPage() {
     if (sourceData) {
       const enabled = new Set<string>();
       sourceData.forEach((s: { source_id: number; enabled: boolean }) => {
-        if (s.enabled) enabled.add(String(s.source_id));
+        if (s.enabled) {
+          const slug = slugById.get(s.source_id);
+          if (slug) enabled.add(slug);
+        }
       });
       setEnabledSources(enabled);
     }
@@ -127,14 +146,40 @@ export default function DashboardPage() {
     });
   }
 
-  function toggleSource(slug: string) {
-    const updated = new Set(enabledSources);
-    if (updated.has(slug)) {
-      updated.delete(slug);
-    } else {
-      updated.add(slug);
+  async function toggleSource(slug: string) {
+    if (!user) return;
+    const sourceId = sourceIdBySlug.get(slug);
+    if (!sourceId) {
+      setSourceError("Source not recognised. Refresh and try again.");
+      return;
     }
-    setEnabledSources(updated);
+    const wasEnabled = enabledSources.has(slug);
+    const optimistic = new Set(enabledSources);
+    if (wasEnabled) optimistic.delete(slug);
+    else optimistic.add(slug);
+    setEnabledSources(optimistic);
+    setSourceError("");
+
+    try {
+      const res = await fetch("/api/user/sources", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user_id: user.id,
+          source_id: sourceId,
+          enabled: !wasEnabled,
+        }),
+      });
+      if (!res.ok) {
+        // Roll back the optimistic toggle and surface the API error.
+        setEnabledSources(enabledSources);
+        const data = await res.json().catch(() => ({}));
+        setSourceError(data.error || "Could not save that change.");
+      }
+    } catch {
+      setEnabledSources(enabledSources);
+      setSourceError("Network error. Please try again.");
+    }
   }
 
   async function saveSettings() {
@@ -371,6 +416,22 @@ export default function DashboardPage() {
       {/* Sources Tab */}
       {activeTab === "sources" && (
         <div className="space-y-6">
+          <div className="glass-card p-5">
+            <p className="text-sm text-foreground">
+              <strong>{enabledSources.size}</strong> source
+              {enabledSources.size === 1 ? "" : "s"} selected.{" "}
+              {user?.app_metadata?.tier === "pro" ? (
+                <span className="text-muted">Pro: unlimited.</span>
+              ) : (
+                <span className="text-muted">
+                  Free tier: up to 5 sources. Leave empty to receive every source.
+                </span>
+              )}
+            </p>
+            {sourceError && (
+              <p className="mt-2 text-sm text-danger">{sourceError}</p>
+            )}
+          </div>
           {CATEGORIES.map((category) => {
             const categorySources = SOURCES.filter(
               (s) => s.category === category.id
