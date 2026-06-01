@@ -113,7 +113,7 @@ export default function HomePricingSection() {
               ))}
             </ul>
             <button className="mt-8 w-full rounded-full bg-primary py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary-hover">
-              Join Waitlist for Pro
+              Notify Me About Pro
             </button>
           </div>
         </div>

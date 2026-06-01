@@ -172,7 +172,7 @@ export default function Home() {
             <WaitlistForm />
           </div>
           <p className="animate-fade-in-up stagger-4 mt-4 text-xs text-muted">
-            Join 0 others already on the waitlist. No spam, ever.
+            No spam, ever. Unsubscribe in one click.
           </p>
         </div>
       </section>
@@ -323,8 +323,7 @@ export default function Home() {
             Ready to take back your mornings?
           </h2>
           <p className="mt-4 text-muted">
-            Join the waitlist and be the first to get your personalised news
-            digest.
+            Be the first to get your personalised news digest when we launch.
           </p>
           <div className="mt-8 flex justify-center">
             <WaitlistForm source="homepage-footer" />

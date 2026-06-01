@@ -61,7 +61,7 @@ export default function WaitlistForm({ source = "homepage" }: { source?: string 
         disabled={status === "loading"}
         className="rounded-full bg-primary px-6 py-3 text-sm font-medium text-white transition-all hover:bg-primary-hover disabled:opacity-60"
       >
-        {status === "loading" ? "Joining..." : "Join the Waitlist"}
+        {status === "loading" ? "Sending..." : "Notify Me"}
       </button>
       {status === "error" && (
         <p className="text-xs text-danger sm:absolute sm:mt-14">{message}</p>
