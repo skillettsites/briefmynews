@@ -61,7 +61,7 @@ export async function POST(request: Request) {
       },
     });
 
-    if (error || !data?.properties?.action_link) {
+    if (error || !data?.properties?.hashed_token) {
       const msg = error?.message || "";
       if (/registered|exists/i.test(msg)) {
         return Response.json(
@@ -79,8 +79,13 @@ export async function POST(request: Request) {
       );
     }
 
-    const actionLink = data.properties.action_link;
-    const safeLink = escapeHtml(actionLink);
+    // Build our own confirmation URL so the click flow stays on briefmynews.com
+    // (the shared Supabase project has its Site URL pointed at another domain,
+    // so action_link would redirect users away).
+    const confirmUrl = `${origin}/auth/confirm?token_hash=${encodeURIComponent(
+      data.properties.hashed_token
+    )}&type=signup`;
+    const safeLink = escapeHtml(confirmUrl);
     const safeName = displayName ? escapeHtml(String(displayName)) : "";
     const greeting = safeName ? `Hi ${safeName},` : "Hi,";
 
