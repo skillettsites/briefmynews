@@ -60,11 +60,14 @@ export async function fetchRSSFeed(url: string, timeoutMs = 4000): Promise<Parse
       return "";
     };
     const linkOf = (item: RSSItem): string => {
-      const l = (item as Record<string, unknown>).link;
+      const l = (item as unknown as Record<string, unknown>).link;
       if (typeof l === "string") return l.trim();
       if (Array.isArray(l)) {
         // Atom: prefer rel="alternate" or the first href.
-        const alt = l.find((x) => x && typeof x === "object" && (x["@_rel"] === "alternate" || !x["@_rel"]));
+        const alt = (l as Record<string, unknown>[]).find((x) => {
+          const rel = x && typeof x === "object" ? (x as Record<string, unknown>)["@_rel"] : undefined;
+          return rel === "alternate" || rel === undefined;
+        });
         return str(alt ?? l[0]);
       }
       return str(l ?? item["@_href"]);
