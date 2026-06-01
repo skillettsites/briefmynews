@@ -155,6 +155,25 @@ export default function DashboardPage() {
     window.location.href = "/";
   }
 
+  async function upgradeToPro(plan: "annual" | "monthly") {
+    if (!user) return;
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId: user.id, plan }),
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        alert(data.error || "Could not start checkout. Please try again shortly.");
+      }
+    } catch {
+      alert("Could not start checkout. Please try again shortly.");
+    }
+  }
+
   if (loading) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
@@ -186,6 +205,28 @@ export default function DashboardPage() {
         >
           Log out
         </button>
+      </div>
+
+      {/* Upgrade to Pro */}
+      <div className="mb-8 flex flex-col gap-3 rounded-xl border border-primary/30 bg-primary/5 p-5 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <p className="text-sm font-semibold text-foreground">Upgrade to BriefMyNews Pro</p>
+          <p className="text-sm text-muted">Unlimited topics and sources, daily or monthly digests, and a send time you choose.</p>
+        </div>
+        <div className="flex shrink-0 gap-2">
+          <button
+            onClick={() => upgradeToPro("annual")}
+            className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+          >
+            $29.99/yr
+          </button>
+          <button
+            onClick={() => upgradeToPro("monthly")}
+            className="rounded-lg border border-primary px-4 py-2 text-sm font-semibold text-primary transition-colors hover:bg-primary/10"
+          >
+            $5/mo
+          </button>
+        </div>
       </div>
 
       {/* Tabs */}
