@@ -98,7 +98,6 @@ export const CATEGORIES = [
   { id: "world", name: "World" },
   { id: "sports", name: "Sports" },
   { id: "alternative", name: "Alternative / Independent" },
-  { id: "podcasts", name: "Podcasts" },
 ];
 
 export const BIAS_LABELS: Record<string, { label: string; colour: string }> = {

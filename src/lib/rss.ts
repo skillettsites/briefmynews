@@ -24,12 +24,23 @@ const parser = new XMLParser({
   attributeNamePrefix: "@_",
 });
 
-export async function fetchRSSFeed(url: string, timeoutMs = 4000): Promise<ParsedArticle[]> {
+// Many publishers (Reddit, FT, Telegraph, Investing.com) reject the literal
+// "BriefMyNews/1.0" UA with a 403. A browser-shaped UA gets through everywhere
+// in our verified-live source list. Keep the bot identifier in parentheses so
+// we're still honest.
+const BROWSER_UA =
+  "Mozilla/5.0 (compatible; BriefMyNewsBot/1.0; +https://briefmynews.com)";
+
+export async function fetchRSSFeed(url: string, timeoutMs = 10000): Promise<ParsedArticle[]> {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
     const response = await fetch(url, {
-      headers: { "User-Agent": "BriefMyNews/1.0" },
+      headers: {
+        "User-Agent": BROWSER_UA,
+        Accept: "application/rss+xml, application/atom+xml, application/xml, text/xml, */*",
+      },
+      redirect: "follow",
       signal: controller.signal,
       cache: "no-store",
     });

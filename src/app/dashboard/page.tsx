@@ -2,8 +2,16 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { supabase } from "@/lib/supabase";
-import { SOURCES, CATEGORIES, BIAS_LABELS } from "@/lib/sources-data";
+import { CATEGORIES, BIAS_LABELS } from "@/lib/sources-data";
 import type { User } from "@supabase/supabase-js";
+
+interface DbSource {
+  id: number;
+  slug: string;
+  name: string;
+  category: string;
+  bias_rating: string;
+}
 
 type Tab = "digests" | "topics" | "sources" | "schedule" | "settings";
 
@@ -44,11 +52,12 @@ export default function DashboardPage() {
   const [topics, setTopics] = useState<UserTopic[]>([]);
   const [newTopic, setNewTopic] = useState("");
 
-  // Sources state. enabledSources keys are source slugs (from sources-data).
+  // Sources state. enabledSources keys are source slugs (from bmn_sources).
   // sourceIdBySlug bridges to the DB layer (bmn_user_sources stores source_id).
   const [enabledSources, setEnabledSources] = useState<Set<string>>(new Set());
   const [sourceIdBySlug, setSourceIdBySlug] = useState<Map<string, number>>(new Map());
   const [sourceError, setSourceError] = useState<string>("");
+  const [allSources, setAllSources] = useState<DbSource[]>([]);
 
   // Settings state
   const [displayName, setDisplayName] = useState("");
@@ -62,18 +71,22 @@ export default function DashboardPage() {
       .eq("user_id", userId);
     if (topicData) setTopics(topicData);
 
-    // Build slug<->id bridge from bmn_sources so toggleSource can call the
-    // /api/user/sources route (which requires source_id, not slug).
+    // Load all sources from DB — used both for rendering the picker (so newly
+    // added sources show up without a code change) and for the slug<->id
+    // bridge that /api/user/sources requires.
     const { data: srcRows } = await supabase
       .from("bmn_sources")
-      .select("id, slug");
+      .select("id, slug, name, category, bias_rating")
+      .order("category", { ascending: true })
+      .order("name", { ascending: true });
     const slugById = new Map<number, string>();
     const idBySlug = new Map<string, number>();
-    (srcRows || []).forEach((s: { id: number; slug: string }) => {
+    (srcRows || []).forEach((s: DbSource) => {
       slugById.set(s.id, s.slug);
       idBySlug.set(s.slug, s.id);
     });
     setSourceIdBySlug(idBySlug);
+    setAllSources((srcRows as DbSource[]) || []);
 
     // Load source preferences (translate stored source_id -> slug for the UI).
     const { data: sourceData } = await supabase
@@ -433,9 +446,10 @@ export default function DashboardPage() {
             )}
           </div>
           {CATEGORIES.map((category) => {
-            const categorySources = SOURCES.filter(
+            const categorySources = allSources.filter(
               (s) => s.category === category.id
             );
+            if (categorySources.length === 0) return null;
             return (
               <div key={category.id} className="glass-card p-6">
                 <h2 className="text-lg font-semibold text-foreground mb-4">
