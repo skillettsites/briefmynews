@@ -36,17 +36,7 @@ export async function POST(req: NextRequest) {
       mode: "subscription",
       payment_method_types: ["card"],
       customer_email: email,
-      line_items: [
-        {
-          price_data: {
-            currency: "usd",
-            product_data: { name: plan.label },
-            unit_amount: plan.amount,
-            recurring: { interval: plan.interval },
-          },
-          quantity: 1,
-        },
-      ],
+      line_items: [{ price: plan.priceId, quantity: 1 }],
       allow_promotion_codes: true,
       success_url: `${origin}/dashboard?upgraded=1`,
       cancel_url: `${origin}/pricing?cancelled=1`,

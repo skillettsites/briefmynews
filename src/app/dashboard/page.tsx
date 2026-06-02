@@ -63,6 +63,16 @@ export default function DashboardPage() {
   const [displayName, setDisplayName] = useState("");
   const [politicalLean, setPoliticalLean] = useState("centre");
 
+  // Upgrade prompt shown inline when a free user tries to use a Pro-only
+  // feature (extra topic/source, daily/monthly schedule, political lean).
+  const [upgradePrompt, setUpgradePrompt] = useState<string>("");
+
+  const tier: "free" | "pro" =
+    (user?.app_metadata?.tier as "pro" | undefined) === "pro" ? "pro" : "free";
+  const isPro = tier === "pro";
+  const topicCap = isPro ? 5 : 1;
+  const sourceCap = isPro ? 10 : 1;
+
   const loadUserData = useCallback(async (userId: string) => {
     // Load topics
     const { data: topicData } = await supabase
@@ -136,6 +146,15 @@ export default function DashboardPage() {
 
   function addTopic() {
     if (!newTopic.trim()) return;
+    if (topics.length >= topicCap) {
+      setUpgradePrompt(
+        isPro
+          ? `Pro is capped at ${topicCap} topics. Remove one before adding another.`
+          : `Free plan is 1 topic. Upgrade to Pro for up to 5 topics.`
+      );
+      return;
+    }
+    setUpgradePrompt("");
     setTopics([...topics, { topic: newTopic.trim(), frequency: "weekly" }]);
     setNewTopic("");
   }
@@ -152,11 +171,28 @@ export default function DashboardPage() {
 
   async function saveTopics() {
     if (!user) return;
-    await fetch("/api/user/topics", {
+    const res = await fetch("/api/user/topics", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ user_id: user.id, topics }),
     });
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      setUpgradePrompt(data.error || "Could not save your topics.");
+    } else {
+      setUpgradePrompt("");
+    }
+  }
+
+  function updateTopicFrequencySafe(index: number, frequency: string) {
+    if (!isPro && frequency !== "weekly") {
+      setUpgradePrompt(
+        "Daily and monthly delivery are Pro features. Upgrade to unlock."
+      );
+      return;
+    }
+    setUpgradePrompt("");
+    updateTopicFrequency(index, frequency);
   }
 
   async function toggleSource(slug: string) {
@@ -167,6 +203,15 @@ export default function DashboardPage() {
       return;
     }
     const wasEnabled = enabledSources.has(slug);
+    // Client-side guard: free is 1 source, Pro is 10. Server enforces too.
+    if (!wasEnabled && enabledSources.size >= sourceCap) {
+      setSourceError(
+        isPro
+          ? `Pro is capped at ${sourceCap} sources. Untick one before adding another.`
+          : `Free plan is 1 source. Upgrade to Pro for up to 10 sources.`
+      );
+      return;
+    }
     const optimistic = new Set(enabledSources);
     if (wasEnabled) optimistic.delete(slug);
     else optimistic.add(slug);
@@ -265,27 +310,57 @@ export default function DashboardPage() {
         </button>
       </div>
 
-      {/* Upgrade to Pro */}
-      <div className="mb-8 flex flex-col gap-3 rounded-xl border border-primary/30 bg-primary/5 p-5 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <p className="text-sm font-semibold text-foreground">Upgrade to BriefMyNews Pro</p>
-          <p className="text-sm text-muted">Unlimited topics and sources, daily or monthly digests, and a send time you choose.</p>
+      {/* Upgrade to Pro — hidden when the user is already Pro */}
+      {!isPro && (
+        <div className="mb-8 flex flex-col gap-3 rounded-xl border border-primary/30 bg-primary/5 p-5 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-sm font-semibold text-foreground">Upgrade to BriefMyNews Pro</p>
+            <p className="text-sm text-muted">
+              Up to 5 topics and 10 sources, daily or monthly digests, and political-lean weighting.
+            </p>
+          </div>
+          <div className="flex shrink-0 gap-2">
+            <button
+              onClick={() => upgradeToPro("annual")}
+              className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+            >
+              £29.99/yr
+            </button>
+            <button
+              onClick={() => upgradeToPro("monthly")}
+              className="rounded-lg border border-primary px-4 py-2 text-sm font-semibold text-primary transition-colors hover:bg-primary/10"
+            >
+              £4.99/mo
+            </button>
+          </div>
         </div>
-        <div className="flex shrink-0 gap-2">
-          <button
-            onClick={() => upgradeToPro("annual")}
-            className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-          >
-            $29.99/yr
-          </button>
-          <button
-            onClick={() => upgradeToPro("monthly")}
-            className="rounded-lg border border-primary px-4 py-2 text-sm font-semibold text-primary transition-colors hover:bg-primary/10"
-          >
-            $5/mo
-          </button>
+      )}
+      {isPro && (
+        <div className="mb-8 rounded-xl border border-success/30 bg-success/5 px-5 py-3 text-sm text-success">
+          You're on BriefMyNews Pro. Thanks for supporting the project.
         </div>
-      </div>
+      )}
+
+      {/* Generic upgrade-prompt banner (shown when a free user trips a gate) */}
+      {upgradePrompt && !isPro && (
+        <div className="mb-6 flex flex-col gap-3 rounded-lg border border-amber-500/30 bg-amber-500/5 p-4 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm text-foreground">{upgradePrompt}</p>
+          <div className="flex shrink-0 gap-2">
+            <button
+              onClick={() => upgradeToPro("annual")}
+              className="rounded-lg bg-primary px-3 py-1.5 text-xs font-semibold text-white hover:opacity-90"
+            >
+              Upgrade — £29.99/yr
+            </button>
+            <button
+              onClick={() => upgradeToPro("monthly")}
+              className="rounded-lg border border-primary px-3 py-1.5 text-xs font-semibold text-primary hover:bg-primary/10"
+            >
+              £4.99/mo
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Tabs */}
       <div className="flex gap-1 overflow-x-auto border-b border-border mb-8">
@@ -375,12 +450,12 @@ export default function DashboardPage() {
                     <div className="flex items-center gap-3">
                       <select
                         value={topic.frequency}
-                        onChange={(e) => updateTopicFrequency(i, e.target.value)}
+                        onChange={(e) => updateTopicFrequencySafe(i, e.target.value)}
                         className="rounded border border-border bg-background px-2 py-1 text-xs text-foreground"
                       >
-                        <option value="daily">Daily</option>
+                        <option value="daily">Daily{isPro ? "" : " — Pro"}</option>
                         <option value="weekly">Weekly</option>
-                        <option value="monthly">Monthly</option>
+                        <option value="monthly">Monthly{isPro ? "" : " — Pro"}</option>
                       </select>
                       <button
                         onClick={() => removeTopic(i)}
@@ -431,13 +506,13 @@ export default function DashboardPage() {
         <div className="space-y-6">
           <div className="glass-card p-5">
             <p className="text-sm text-foreground">
-              <strong>{enabledSources.size}</strong> source
-              {enabledSources.size === 1 ? "" : "s"} selected.{" "}
-              {user?.app_metadata?.tier === "pro" ? (
-                <span className="text-muted">Pro: unlimited.</span>
+              <strong>{enabledSources.size}</strong> of {sourceCap} source
+              {sourceCap === 1 ? "" : "s"} selected.{" "}
+              {isPro ? (
+                <span className="text-muted">Pro plan: up to 10 sources.</span>
               ) : (
                 <span className="text-muted">
-                  Free tier: up to 5 sources. Leave empty to receive every source.
+                  Free plan: 1 source. Upgrade to Pro for up to 10.
                 </span>
               )}
             </p>
@@ -540,12 +615,12 @@ export default function DashboardPage() {
                   </span>
                   <select
                     value={topic.frequency}
-                    onChange={(e) => updateTopicFrequency(i, e.target.value)}
+                    onChange={(e) => updateTopicFrequencySafe(i, e.target.value)}
                     className="rounded-lg border border-border bg-background px-3 py-1.5 text-sm text-foreground"
                   >
-                    <option value="daily">Daily</option>
+                    <option value="daily">Daily{isPro ? "" : " — Pro"}</option>
                     <option value="weekly">Weekly</option>
-                    <option value="monthly">Monthly</option>
+                    <option value="monthly">Monthly{isPro ? "" : " — Pro"}</option>
                   </select>
                 </div>
               ))}
@@ -589,24 +664,41 @@ export default function DashboardPage() {
           </div>
 
           <div className="glass-card p-6">
-            <h2 className="text-lg font-semibold text-foreground mb-4">
-              Political Lean
-            </h2>
+            <div className="mb-4 flex items-center gap-2">
+              <h2 className="text-lg font-semibold text-foreground">
+                Political Lean
+              </h2>
+              {!isPro && (
+                <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-primary">
+                  Pro
+                </span>
+              )}
+            </div>
             <p className="text-sm text-muted mb-4">
-              This helps us understand your preferred editorial perspective. It
-              does not filter out sources; it simply helps prioritise content
-              that aligns with your interests.
+              Weights articles toward your preferred editorial perspective in
+              every digest. Doesn&apos;t filter out sources.
             </p>
             <div className="flex gap-2 flex-wrap">
               {LEAN_OPTIONS.map((option) => (
                 <button
                   key={option.value}
-                  onClick={() => setPoliticalLean(option.value)}
+                  onClick={() => {
+                    if (!isPro && option.value !== "centre") {
+                      setUpgradePrompt(
+                        "Political-lean weighting is a Pro feature. Upgrade to unlock."
+                      );
+                      return;
+                    }
+                    setUpgradePrompt("");
+                    setPoliticalLean(option.value);
+                  }}
+                  disabled={!isPro && option.value !== "centre"}
                   className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                     politicalLean === option.value
                       ? "bg-primary text-white"
                       : "border border-border text-muted hover:text-foreground"
-                  }`}
+                  } ${!isPro && option.value !== "centre" ? "opacity-50 cursor-not-allowed" : ""}`}
+                  title={!isPro && option.value !== "centre" ? "Pro only" : undefined}
                 >
                   {option.label}
                 </button>

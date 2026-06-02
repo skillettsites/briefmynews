@@ -4,7 +4,7 @@ import { expandTopic, scoreArticle, RELEVANCE_THRESHOLD } from "./topic-match";
 import { biasStyle, leanWeight } from "./bias";
 import { ensureSummaries, ArticleRow } from "./summarise";
 import { unsubUrl } from "./unsubscribe";
-import { FREE_TOPIC_LIMIT, FREE_SOURCE_LIMIT } from "./limits";
+import { topicLimit, sourceLimit, politicalLeanAllowed } from "./limits";
 
 const MAX_ARTICLES_PER_TOPIC = 5;
 const FROM = process.env.DIGEST_FROM || "BriefMyNews <digest@briefmynews.com>";
@@ -58,11 +58,15 @@ export async function buildUserDigest(
       admin.from("bmn_sources").select("id, name, bias_rating"),
     ]);
 
-  const lean = profileRows?.[0]?.political_lean || "centre";
+  const tier: "free" | "pro" = isFree ? "free" : "pro";
+  // Political lean only weights articles for Pro subscribers. Free defaults
+  // to centre regardless of what's stored in the profile row.
+  const storedLean = profileRows?.[0]?.political_lean || "centre";
+  const lean = politicalLeanAllowed(tier) ? storedLean : "centre";
   const sourceById = new Map<number, SourceRow>((allSources || []).map((s) => [s.id, s as SourceRow]));
 
   // Resolve the user's enabled sources. If they have not picked any, default
-  // to all free sources so a digest is never empty.
+  // to all sources so a digest is never empty.
   let enabledSourceIds: number[];
   const explicitlyEnabled = (srcPrefRows || []).filter((r) => r.enabled).map((r) => r.source_id);
   if (explicitlyEnabled.length > 0) {
@@ -70,14 +74,14 @@ export async function buildUserDigest(
   } else {
     enabledSourceIds = (allSources || []).map((s) => s.id);
   }
-  if (isFree) enabledSourceIds = enabledSourceIds.slice(0, FREE_SOURCE_LIMIT);
+  enabledSourceIds = enabledSourceIds.slice(0, sourceLimit(tier));
   const enabledSet = new Set(enabledSourceIds);
 
   let topics = (topicRows || []).map((t) => ({
     topic: t.topic as string,
     frequency: (t.frequency as Frequency) || "weekly",
   }));
-  if (isFree) topics = topics.slice(0, FREE_TOPIC_LIMIT);
+  topics = topics.slice(0, topicLimit(tier));
 
   // Widest lookback across this user's topics (free users are weekly).
   const lookback =

@@ -1,4 +1,6 @@
 import { getSupabaseServer } from "@/lib/supabase";
+import { getUserById } from "@/lib/admin";
+import { politicalLeanAllowed } from "@/lib/limits";
 
 export async function POST(request: Request) {
   try {
@@ -16,6 +18,20 @@ export async function POST(request: Request) {
         { error: "Invalid political lean value" },
         { status: 400 }
       );
+    }
+
+    if (political_lean !== undefined && political_lean !== "centre") {
+      const user = await getUserById(user_id);
+      const tier = user?.tier === "pro" ? "pro" : "free";
+      if (!politicalLeanAllowed(tier)) {
+        return Response.json(
+          {
+            error: "Political lean weighting is a Pro feature. Upgrade to unlock.",
+            code: "pro_feature",
+          },
+          { status: 403 }
+        );
+      }
     }
 
     const updates: Record<string, string> = { updated_at: new Date().toISOString() };

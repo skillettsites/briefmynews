@@ -1,24 +1,40 @@
 import Stripe from "stripe";
 
+function clean(v: string | undefined): string {
+  return (v || "").replace(/\\n$/, "").trim();
+}
+
 let _stripe: Stripe | null = null;
 
 export function getStripe(): Stripe {
-  if (!process.env.STRIPE_SECRET_KEY) {
+  const key = clean(process.env.STRIPE_SECRET_KEY);
+  if (!key) {
     throw new Error("STRIPE_SECRET_KEY is not set");
   }
-  if (!_stripe) _stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+  if (!_stripe) _stripe = new Stripe(key);
   return _stripe;
 }
 
 export function stripeConfigured(): boolean {
-  return !!process.env.STRIPE_SECRET_KEY;
+  return !!clean(process.env.STRIPE_SECRET_KEY);
 }
 
-// Pro plan pricing. Subscriptions are created with inline price_data so no
-// Stripe dashboard product setup is required to go live.
+// BriefMyNews Pro pricing — billed in GBP via Stripe price IDs (see Stripe
+// dashboard product prod_Ud3WwPnN1kRLtl). Lookup keys mirror these IDs so we
+// can re-resolve them if the price gets rotated.
 export const PLANS = {
-  annual: { amount: 2999, interval: "year" as const, label: "BriefMyNews Pro (annual)" },
-  monthly: { amount: 500, interval: "month" as const, label: "BriefMyNews Pro (monthly)" },
-};
+  annual: {
+    priceId: "price_1TdnPsIpnYPofJui6hE9A3N2",
+    lookupKey: "bmn_pro_annual_gbp",
+    label: "BriefMyNews Pro (annual)",
+    displayPrice: "£29.99/yr",
+  },
+  monthly: {
+    priceId: "price_1TdnPsIpnYPofJui0q9T5cfH",
+    lookupKey: "bmn_pro_monthly_gbp",
+    label: "BriefMyNews Pro (monthly)",
+    displayPrice: "£4.99/mo",
+  },
+} as const;
 
 export type PlanKey = keyof typeof PLANS;
