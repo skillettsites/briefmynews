@@ -63,7 +63,7 @@ export default function HomePricingSection() {
               href="/signup"
               className="mt-8 block w-full rounded-full border border-border py-2.5 text-center text-sm font-medium text-foreground transition-colors hover:bg-surface-hover"
             >
-              Get Started Free
+              Try for free
             </Link>
           </div>
 
@@ -119,7 +119,7 @@ export default function HomePricingSection() {
             </ul>
             <ProCheckoutButton
               plan={isYearly ? "annual" : "monthly"}
-              label="Get Pro"
+              label="Sign up to Pro"
               className="mt-8 block w-full rounded-full bg-primary py-2.5 text-center text-sm font-medium text-white transition-colors hover:bg-primary-hover disabled:opacity-60"
             />
             <Link
