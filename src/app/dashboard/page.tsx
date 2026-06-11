@@ -169,12 +169,21 @@ export default function DashboardPage() {
     setTopics(updated);
   }
 
+  async function authHeaders(): Promise<Record<string, string>> {
+    const { data } = await supabase.auth.getSession();
+    const token = data.session?.access_token;
+    return {
+      "Content-Type": "application/json",
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    };
+  }
+
   async function saveTopics() {
     if (!user) return;
     const res = await fetch("/api/user/topics", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ user_id: user.id, topics }),
+      headers: await authHeaders(),
+      body: JSON.stringify({ topics }),
     });
     if (!res.ok) {
       const data = await res.json().catch(() => ({}));
@@ -221,9 +230,8 @@ export default function DashboardPage() {
     try {
       const res = await fetch("/api/user/sources", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: await authHeaders(),
         body: JSON.stringify({
-          user_id: user.id,
           source_id: sourceId,
           enabled: !wasEnabled,
         }),
@@ -244,9 +252,8 @@ export default function DashboardPage() {
     if (!user) return;
     await fetch("/api/user/settings", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: await authHeaders(),
       body: JSON.stringify({
-        user_id: user.id,
         display_name: displayName,
         political_lean: politicalLean,
       }),

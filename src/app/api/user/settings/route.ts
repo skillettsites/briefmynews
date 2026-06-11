@@ -1,16 +1,17 @@
 import { getSupabaseServer } from "@/lib/supabase";
 import { getUserById } from "@/lib/admin";
+import { getAuthedUserId } from "@/lib/api-auth";
 import { politicalLeanAllowed } from "@/lib/limits";
 
 export async function POST(request: Request) {
   try {
     const supabase = getSupabaseServer();
-    const body = await request.json();
-    const { user_id, display_name, political_lean } = body;
-
+    const user_id = await getAuthedUserId(request);
     if (!user_id) {
-      return Response.json({ error: "user_id is required" }, { status: 400 });
+      return Response.json({ error: "Not authenticated" }, { status: 401 });
     }
+    const body = await request.json();
+    const { display_name, political_lean } = body;
 
     const validLeans = ["left", "centre-left", "centre", "centre-right", "right"];
     if (political_lean && !validLeans.includes(political_lean)) {

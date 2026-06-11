@@ -1,16 +1,21 @@
 import { getSupabaseServer } from "@/lib/supabase";
 import { getUserById } from "@/lib/admin";
+import { getAuthedUserId } from "@/lib/api-auth";
 import { sourceLimit } from "@/lib/limits";
 
 export async function POST(request: Request) {
   try {
     const supabase = getSupabaseServer();
+    const user_id = await getAuthedUserId(request);
+    if (!user_id) {
+      return Response.json({ error: "Not authenticated" }, { status: 401 });
+    }
     const body = await request.json();
-    const { user_id, source_id, enabled } = body;
+    const { source_id, enabled } = body;
 
-    if (!user_id || source_id === undefined) {
+    if (source_id === undefined) {
       return Response.json(
-        { error: "user_id and source_id are required" },
+        { error: "source_id is required" },
         { status: 400 }
       );
     }

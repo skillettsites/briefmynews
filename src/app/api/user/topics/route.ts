@@ -1,16 +1,21 @@
 import { getSupabaseServer } from "@/lib/supabase";
 import { getUserById } from "@/lib/admin";
+import { getAuthedUserId } from "@/lib/api-auth";
 import { topicLimit, allowedFrequency } from "@/lib/limits";
 
 export async function POST(request: Request) {
   try {
     const supabase = getSupabaseServer();
+    const user_id = await getAuthedUserId(request);
+    if (!user_id) {
+      return Response.json({ error: "Not authenticated" }, { status: 401 });
+    }
     const body = await request.json();
-    const { user_id, topics } = body;
+    const { topics } = body;
 
-    if (!user_id || !Array.isArray(topics)) {
+    if (!Array.isArray(topics)) {
       return Response.json(
-        { error: "user_id and topics array are required" },
+        { error: "topics array is required" },
         { status: 400 }
       );
     }
