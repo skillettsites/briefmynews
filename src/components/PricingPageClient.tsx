@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import PricingToggle from "./PricingToggle";
+import ProCheckoutButton from "./ProCheckoutButton";
 
 const getPlans = (isYearly: boolean) => [
   {
@@ -144,16 +145,20 @@ export default function PricingPageClient() {
               ))}
             </ul>
 
-            <Link
-              href={plan.ctaLink}
-              className={`mt-8 block w-full rounded-full py-2.5 text-center text-sm font-medium transition-colors ${
-                plan.highlight
-                  ? "bg-primary text-white hover:bg-primary-hover"
-                  : "border border-border text-foreground hover:bg-surface-hover"
-              }`}
-            >
-              {plan.cta}
-            </Link>
+            {plan.highlight ? (
+              <ProCheckoutButton
+                plan={isYearly ? "annual" : "monthly"}
+                label={plan.cta}
+                className="mt-8 block w-full rounded-full bg-primary py-2.5 text-center text-sm font-medium text-white transition-colors hover:bg-primary-hover disabled:opacity-60"
+              />
+            ) : (
+              <Link
+                href={plan.ctaLink}
+                className="mt-8 block w-full rounded-full border border-border py-2.5 text-center text-sm font-medium text-foreground transition-colors hover:bg-surface-hover"
+              >
+                {plan.cta}
+              </Link>
+            )}
           </div>
         ))}
       </div>

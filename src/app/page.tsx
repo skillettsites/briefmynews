@@ -1,4 +1,4 @@
-import WaitlistForm from "@/components/WaitlistForm";
+import Link from "next/link";
 import HomePricingSection from "@/components/HomePricingSection";
 
 const features = [
@@ -156,7 +156,7 @@ export default function Home() {
           <div className="animate-fade-in-up">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-1.5 text-xs font-medium text-muted">
               <span className="h-1.5 w-1.5 rounded-full bg-success animate-pulse" />
-              Launching soon
+              Free to start. Pro from £2.50/month.
             </div>
           </div>
           <h1 className="animate-fade-in-up stagger-1 mx-auto max-w-3xl text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
@@ -168,11 +168,22 @@ export default function Home() {
             A personalised news digest that delivers only what matters to you.
             Pick your topics, choose your sources, set your frequency.
           </p>
-          <div className="animate-fade-in-up stagger-3 mt-10 flex justify-center">
-            <WaitlistForm />
+          <div className="animate-fade-in-up stagger-3 mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Link
+              href="/signup"
+              className="rounded-full bg-primary px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
+            >
+              Start free
+            </Link>
+            <Link
+              href="/pricing"
+              className="rounded-full border border-border bg-surface px-8 py-3 text-sm font-medium text-foreground transition-colors hover:bg-surface-hover"
+            >
+              See Pro
+            </Link>
           </div>
           <p className="animate-fade-in-up stagger-4 mt-4 text-xs text-muted">
-            No spam, ever. Unsubscribe in one click.
+            Free forever on 1 topic. No card needed. Unsubscribe in one click.
           </p>
         </div>
       </section>
@@ -323,10 +334,22 @@ export default function Home() {
             Ready to take back your mornings?
           </h2>
           <p className="mt-4 text-muted">
-            Be the first to get your personalised news digest when we launch.
+            Start free in under a minute. Upgrade to Pro whenever you want more
+            topics, more sources, and daily delivery.
           </p>
-          <div className="mt-8 flex justify-center">
-            <WaitlistForm source="homepage-footer" />
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Link
+              href="/signup"
+              className="rounded-full bg-primary px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
+            >
+              Sign up free
+            </Link>
+            <Link
+              href="/pricing"
+              className="rounded-full border border-border bg-surface px-8 py-3 text-sm font-medium text-foreground transition-colors hover:bg-surface-hover"
+            >
+              Get Pro
+            </Link>
           </div>
         </div>
       </section>

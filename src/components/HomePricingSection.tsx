@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import PricingToggle from "./PricingToggle";
+import ProCheckoutButton from "./ProCheckoutButton";
 
 export default function HomePricingSection() {
   const [isYearly, setIsYearly] = useState(true);
@@ -116,11 +117,16 @@ export default function HomePricingSection() {
                 </li>
               ))}
             </ul>
+            <ProCheckoutButton
+              plan={isYearly ? "annual" : "monthly"}
+              label="Get Pro"
+              className="mt-8 block w-full rounded-full bg-primary py-2.5 text-center text-sm font-medium text-white transition-colors hover:bg-primary-hover disabled:opacity-60"
+            />
             <Link
               href="/pricing"
-              className="mt-8 block w-full rounded-full bg-primary py-2.5 text-center text-sm font-medium text-white transition-colors hover:bg-primary-hover"
+              className="mt-3 block text-center text-xs text-muted hover:text-foreground transition-colors"
             >
-              Upgrade to Pro
+              Compare plans
             </Link>
           </div>
         </div>
