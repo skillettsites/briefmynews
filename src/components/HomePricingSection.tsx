@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import PricingToggle from "./PricingToggle";
 
 export default function HomePricingSection() {
@@ -25,13 +26,13 @@ export default function HomePricingSection() {
           <div className="glass-card p-8">
             <h3 className="text-lg font-semibold text-foreground">Free</h3>
             <div className="mt-2">
-              <span className="text-4xl font-bold text-foreground">$0</span>
+              <span className="text-4xl font-bold text-foreground">£0</span>
               <span className="text-muted">/forever</span>
             </div>
             <ul className="mt-6 space-y-3">
               {[
-                "3 topics",
-                "5 news sources",
+                "1 topic",
+                "1 news source",
                 "Weekly digest",
                 "AI summaries",
                 "Source bias labels",
@@ -57,9 +58,12 @@ export default function HomePricingSection() {
                 </li>
               ))}
             </ul>
-            <button className="mt-8 w-full rounded-full border border-border py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-surface-hover">
+            <Link
+              href="/signup"
+              className="mt-8 block w-full rounded-full border border-border py-2.5 text-center text-sm font-medium text-foreground transition-colors hover:bg-surface-hover"
+            >
               Get Started Free
-            </button>
+            </Link>
           </div>
 
           {/* Pro */}
@@ -70,7 +74,7 @@ export default function HomePricingSection() {
             <h3 className="text-lg font-semibold text-foreground">Pro</h3>
             <div className="mt-2">
               <span className="text-4xl font-bold text-foreground">
-                {isYearly ? "$29.99" : "$5"}
+                {isYearly ? "£29.99" : "£4.99"}
               </span>
               <span className="text-muted">
                 /{isYearly ? "year" : "month"}
@@ -78,13 +82,13 @@ export default function HomePricingSection() {
             </div>
             <p className="mt-1 text-xs text-muted">
               {isYearly
-                ? "Just $2.50/month. Cancel anytime."
-                : "Or save 50% with yearly billing at $29.99/year."}
+                ? "Just £2.50/month. Cancel anytime."
+                : "Or save 50% with yearly billing at £29.99/year."}
             </p>
             <ul className="mt-6 space-y-3">
               {[
-                "Unlimited topics",
-                "Unlimited sources",
+                "Up to 5 topics",
+                "Up to 10 sources from 90+ outlets",
                 "Daily, weekly, or monthly delivery",
                 "AI summaries with key quotes",
                 "Political lean customisation",
@@ -112,9 +116,12 @@ export default function HomePricingSection() {
                 </li>
               ))}
             </ul>
-            <button className="mt-8 w-full rounded-full bg-primary py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary-hover">
-              Notify Me About Pro
-            </button>
+            <Link
+              href="/pricing"
+              className="mt-8 block w-full rounded-full bg-primary py-2.5 text-center text-sm font-medium text-white transition-colors hover:bg-primary-hover"
+            >
+              Upgrade to Pro
+            </Link>
           </div>
         </div>
       </div>

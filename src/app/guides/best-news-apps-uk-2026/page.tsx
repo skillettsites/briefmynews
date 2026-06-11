@@ -39,9 +39,9 @@ const apps: NewsApp[] = [
     name: "BriefMyNews",
     featured: true,
     description:
-      "BriefMyNews delivers personalised news digests straight to your inbox. You pick your topics, choose from 63+ sources with clear bias labels, and set your own delivery schedule. Instead of doomscrolling through endless feeds, you get a concise briefing that covers exactly what matters to you.",
+      "BriefMyNews delivers personalised news digests straight to your inbox. You pick your topics, choose from 90+ sources with clear bias labels, and set your own delivery schedule. Instead of doomscrolling through endless feeds, you get a concise briefing that covers exactly what matters to you.",
     bestFor: "Busy professionals who want curated, bias-aware briefings without opening another app",
-    pricing: "Free (3 topics, weekly digest) / Pro at \u00a34.99/month (unlimited topics, daily delivery)",
+    pricing: "Free (1 topic, weekly digest) / Pro at \u00a34.99/month (up to 5 topics, daily delivery)",
     pros: [
       "Bias labels on every source so you always know the editorial perspective",
       "Email delivery means zero extra apps or notifications",
@@ -49,7 +49,7 @@ const apps: NewsApp[] = [
     ],
     cons: [
       "No standalone mobile app yet (email-first by design)",
-      "Free tier limited to 3 topics and weekly delivery",
+      "Free tier limited to 1 topic and weekly delivery",
     ],
   },
   {
@@ -200,7 +200,7 @@ const faqItems = [
   {
     question: "What is the best free news app in the UK?",
     answer:
-      "For most UK readers, the BBC News app is the best free option thanks to its ad-free experience and impartial reporting. If you want personalised digests from multiple sources at no cost, BriefMyNews offers a free tier with 3 topics and weekly email delivery.",
+      "For most UK readers, the BBC News app is the best free option thanks to its ad-free experience and impartial reporting. If you want personalised digests from multiple sources at no cost, BriefMyNews offers a free tier with a weekly email digest on the topic you choose.",
   },
   {
     question: "Are personalised news apps biased?",

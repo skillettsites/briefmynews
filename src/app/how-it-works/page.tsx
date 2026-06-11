@@ -29,13 +29,13 @@ const steps = [
       "NHS funding updates",
     ],
     detail:
-      "Free users can track up to 3 topics. Pro users have no limits. Add, remove, or adjust topics at any time from your dashboard.",
+      "Free users track 1 topic. Pro users can track up to 5. Add, remove, or adjust topics at any time from your dashboard.",
   },
   {
     number: "02",
     title: "Choose your sources",
     description:
-      "Select which news outlets you trust from our curated list of 35+ sources. Each one displays a clear bias indicator so you always know the editorial perspective.",
+      "Select which news outlets you trust from our curated list of 90+ sources. Each one displays a clear bias indicator so you always know the editorial perspective.",
     examples: [
       "BBC News (Centre)",
       "The Guardian (Centre-Left)",

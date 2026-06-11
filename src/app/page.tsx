@@ -73,7 +73,7 @@ const faqs = [
   {
     question: "Is BriefMyNews free to use?",
     answer:
-      "Yes. The free plan gives you 3 topics, 5 news sources, and a weekly digest. For unlimited topics, sources, and daily delivery, the Pro plan is just \u00a329.99 per year.",
+      "Yes. The free plan gives you 1 topic with a weekly digest. For up to 5 topics, 10 sources, and daily delivery, the Pro plan is just \u00a329.99 per year.",
   },
   {
     question: "Which news sources are available?",

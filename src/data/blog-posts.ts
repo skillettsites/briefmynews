@@ -51,7 +51,7 @@ export const blogPosts: BlogPost[] = [
 
       <h2>BriefMyNews</h2>
       <p>BriefMyNews takes a different approach by focusing on <a href="/how-it-works">precision and delivery</a>. Instead of browsing an app, you configure exactly what you want: specific topics (as narrow as "AI regulation in the EU"), your preferred <a href="/sources">news sources</a>, and a delivery schedule. The result is a clean email digest delivered on your terms.</p>
-      <p>Every source is labelled with its political lean, and a bias slider lets you balance your reading list. The free plan includes 3 topics and 5 sources with a weekly digest. <a href="/pricing">Pro users</a> get unlimited everything with daily delivery.</p>
+      <p>Every source is labelled with its political lean, and a bias slider lets you balance your reading list. The free plan includes 1 topic with a weekly digest. <a href="/pricing">Pro users</a> get up to 5 topics, 10 sources, and daily delivery.</p>
       <p><strong>Pros:</strong> Highly specific topic selection, full source control, bias labels on every source, email-based (no app needed), flexible scheduling.</p>
       <p><strong>Cons:</strong> Email-only (no standalone app yet), newer platform with a smaller user base.</p>
 
@@ -83,7 +83,7 @@ export const blogPosts: BlogPost[] = [
       {
         question: "Are personalised news apps free?",
         answer:
-          "Most offer free tiers. Google News and Flipboard are free with ads. BriefMyNews offers a free plan with 3 topics and 5 sources. Ground News and Apple News require subscriptions for full features.",
+          "Most offer free tiers. Google News and Flipboard are free with ads. BriefMyNews offers a free plan with 1 topic and a weekly digest. Ground News and Apple News require subscriptions for full features.",
       },
       {
         question: "Do personalised news apps create filter bubbles?",
@@ -557,7 +557,7 @@ export const blogPosts: BlogPost[] = [
       {
         question: "Are morning news digests free?",
         answer:
-          "Most morning digests offer free versions. 1440, Morning Brew, and The Skimm are all free (with sponsored content). BriefMyNews has a free tier with 3 topics and 5 sources.",
+          "Most morning digests offer free versions. 1440, Morning Brew, and The Skimm are all free (with sponsored content). BriefMyNews has a free tier with 1 topic and a weekly digest.",
       },
       {
         question: "How long does it take to read a morning news digest?",
@@ -738,7 +738,7 @@ export const blogPosts: BlogPost[] = [
 
       <h2>Aggregating Free Sources</h2>
       <p>Reading all these sources individually is time-consuming. News aggregators solve this by pulling together stories from multiple outlets into a single feed or digest.</p>
-      <p><a href="/">BriefMyNews</a> supports all of the sources listed above and many more. You can <a href="/sources">browse the full source list</a>, select the ones you trust, and receive a personalised digest by email. The <a href="/pricing">free plan</a> includes 3 topics and 5 sources, making it a cost-effective way to stay informed across multiple outlets.</p>
+      <p><a href="/">BriefMyNews</a> supports all of the sources listed above and many more. You can <a href="/sources">browse the full source list</a>, select the ones you trust, and receive a personalised digest by email. The <a href="/pricing">free plan</a> includes 1 topic with a weekly digest, making it a cost-effective way to stay informed across multiple outlets.</p>
 
       <h2>Tips for Getting the Most from Free News</h2>
       <ul>
@@ -762,7 +762,7 @@ export const blogPosts: BlogPost[] = [
       {
         question: "How can I read news from multiple sources for free?",
         answer:
-          "Use a news aggregator like BriefMyNews, which pulls from 35+ sources and delivers a personalised digest. The free plan includes 3 topics and 5 sources.",
+          "Use a news aggregator like BriefMyNews, which pulls from 35+ sources and delivers a personalised digest. The free plan includes 1 topic with a weekly digest.",
       },
     ],
   },
@@ -1138,7 +1138,7 @@ export const blogPosts: BlogPost[] = [
       </ul>
 
       <h2>Getting Started</h2>
-      <p>If you are still consuming news through general feeds, try switching to a personalised digest for one week. <a href="/pricing">BriefMyNews offers a free plan</a> with 3 topics and 5 sources. Set it up in minutes and see the difference when every article in your inbox is something you actually want to read.</p>
+      <p>If you are still consuming news through general feeds, try switching to a personalised digest for one week. <a href="/pricing">BriefMyNews offers a free plan</a> with 1 topic and a weekly digest. Set it up in minutes and see the difference when every article in your inbox is something you actually want to read.</p>
     `,
     faqs: [
       {
@@ -1154,7 +1154,7 @@ export const blogPosts: BlogPost[] = [
       {
         question: "Does personalised news cost money?",
         answer:
-          "Some services charge, but BriefMyNews offers a free plan with 3 topics and 5 sources. The Pro plan with unlimited everything is $29.99/year or $5/month.",
+          "Some services charge, but BriefMyNews offers a free plan with 1 topic and a weekly digest. The Pro plan with up to 5 topics and 10 sources is \u00a329.99/year or \u00a34.99/month.",
       },
     ],
   },

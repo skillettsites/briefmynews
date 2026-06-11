@@ -57,7 +57,7 @@ export default function TermsPage() {
           <p>
             The Service offers a free tier and a paid Pro tier. The free tier
             includes limited topics, sources, and weekly delivery. The Pro tier
-            ($29.99/year or $5/month) provides unlimited access to all features.
+            (&pound;29.99/year or &pound;4.99/month) unlocks the full set of features.
             Pricing may change with 30 days&apos; notice to existing subscribers.
           </p>
         </section>

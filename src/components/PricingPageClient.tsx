@@ -7,18 +7,18 @@ import PricingToggle from "./PricingToggle";
 const getPlans = (isYearly: boolean) => [
   {
     name: "Free",
-    price: "$0",
+    price: "£0",
     period: "forever",
-    description: "Perfect for staying informed on a few key topics.",
+    description: "Perfect for staying informed on the topic you care about most.",
     features: [
-      { text: "3 topics", included: true },
-      { text: "5 news sources", included: true },
+      { text: "1 topic", included: true },
+      { text: "1 news source", included: true },
       { text: "Weekly digest", included: true },
       { text: "AI-powered summaries", included: true },
       { text: "Source bias labels", included: true },
       { text: "Daily or monthly delivery", included: false },
-      { text: "Unlimited topics", included: false },
-      { text: "50+ news sources", included: false },
+      { text: "Up to 5 topics", included: false },
+      { text: "Up to 10 sources from 90+ outlets", included: false },
       { text: "Priority email delivery", included: false },
       { text: "Early access to new features", included: false },
     ],
@@ -28,16 +28,16 @@ const getPlans = (isYearly: boolean) => [
   },
   {
     name: "Pro",
-    price: isYearly ? "$29.99" : "$5",
+    price: isYearly ? "£29.99" : "£4.99",
     period: isYearly ? "year" : "month",
     subtitle: isYearly
-      ? "Just $2.50/month. Cancel anytime."
-      : "Or save 50% with yearly billing at $29.99/year.",
+      ? "Just £2.50/month. Cancel anytime."
+      : "Or save 50% with yearly billing at £29.99/year.",
     description:
       "Save 2+ hours per week. Full control over topics, sources, and delivery.",
     features: [
-      { text: "Unlimited topics, as specific as you need", included: true },
-      { text: "50+ trusted news sources (Reuters, AP, BBC, and more)", included: true },
+      { text: "Up to 5 topics, as specific as you need", included: true },
+      { text: "Choose up to 10 sources from 90+ trusted outlets (Reuters, AP, BBC, and more)", included: true },
       { text: "Daily, weekly, or monthly delivery", included: true },
       { text: "AI-powered summaries with key quotes", included: true },
       { text: "Source bias labels on every article", included: true },
@@ -47,7 +47,7 @@ const getPlans = (isYearly: boolean) => [
       { text: "Custom digest formatting", included: true },
       { text: "Email support", included: true },
     ],
-    cta: "Start Your 7-Day Free Trial",
+    cta: "Upgrade to Pro",
     ctaLink: "/signup",
     highlight: true,
     badge: isYearly ? "Save 50%" : "Most Popular",
@@ -213,7 +213,7 @@ export default function PricingPageClient() {
             },
             {
               q: "Is there a monthly payment option?",
-              a: "Yes. You can choose between monthly billing at $5/month or annual billing at $29.99/year, which saves you 50%.",
+              a: "Yes. You can choose between monthly billing at £4.99/month or annual billing at £29.99/year, which saves you 50%.",
             },
             {
               q: "What payment methods do you accept?",

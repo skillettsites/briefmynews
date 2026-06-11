@@ -343,7 +343,7 @@ export const newBlogPosts: BlogPost[] = [
 
       <h3>BriefMyNews</h3>
       <p><a href="/">BriefMyNews</a> gives you complete control over your sources. You browse a <a href="/sources">catalogue of news outlets</a>, each labelled with its political lean, and select exactly which ones you want to hear from. Combined with specific topic selection and scheduled email delivery, it's the most granular source control available in a news service today.</p>
-      <p><strong>Source control:</strong> Full. You pick individual outlets. <strong>Delivery:</strong> Email digest on your schedule. <strong>Free tier:</strong> 5 sources, 3 topics.</p>
+      <p><strong>Source control:</strong> Full. You pick individual outlets. <strong>Delivery:</strong> Email digest on your schedule. <strong>Free tier:</strong> 1 topic, weekly digest.</p>
 
       <h3>Feedly</h3>
       <p>Feedly is an RSS reader, which means you subscribe to individual publication feeds. It's powerful and flexible, but it requires more setup than most people want. You need to find and add RSS feeds manually, organise them into folders, and manage your own reading workflow. There's no bias labelling or topic-based filtering built in.</p>
@@ -466,7 +466,7 @@ export const newBlogPosts: BlogPost[] = [
         <li><strong>Set the right frequency.</strong> Daily is too much for most people. Weekly is the sweet spot for staying informed without inbox fatigue.</li>
       </ol>
 
-      <p>The <a href="/pricing">BriefMyNews free plan</a> includes 3 topics, 5 sources, and weekly delivery, which is enough for most people to replace several underperforming newsletters with one that actually gets read.</p>
+      <p>The <a href="/pricing">BriefMyNews free plan</a> includes 1 topic with weekly delivery, which is enough for most people to replace several underperforming newsletters with one that actually gets read.</p>
     `,
     faqs: [
       {
@@ -1164,7 +1164,7 @@ export const newBlogPosts: BlogPost[] = [
       <h3>BriefMyNews</h3>
       <p>Unlike the newsletters above, which send the same content to everyone, <a href="/">BriefMyNews</a> lets you build a completely personalised digest. You <a href="/how-it-works">choose your topics</a> (as specific as "AI regulation in the EU" or "UK property market"), pick your <a href="/sources">sources</a> with visible bias labels, and set your delivery schedule.</p>
       <p>For professionals who want news tailored to their specific role and industry rather than general coverage, this is the most efficient option.</p>
-      <p><strong>Best for:</strong> Professionals who want topic-specific, source-controlled news. <strong>Frequency:</strong> You choose. <strong>Cost:</strong> <a href="/pricing">Free tier + Pro from $5/month</a>.</p>
+      <p><strong>Best for:</strong> Professionals who want topic-specific, source-controlled news. <strong>Frequency:</strong> You choose. <strong>Cost:</strong> <a href="/pricing">Free tier + Pro from \u00a34.99/month</a>.</p>
 
       <h2>How to Choose</h2>
       <p>Most professionals do well with this combination:</p>
@@ -1190,7 +1190,7 @@ export const newBlogPosts: BlogPost[] = [
       {
         question: "Are paid newsletters worth it for professionals?",
         answer:
-          "Some are. Stratechery's premium tier is widely considered worth the $15/month for tech professionals. BriefMyNews Pro offers unlimited topics and sources from $5/month. The value depends on how relevant the content is to your work and how much time it saves you.",
+          "Some are. Stratechery's premium tier is widely considered worth the $15/month for tech professionals. BriefMyNews Pro offers up to 5 topics and 10 sources from \u00a34.99/month. The value depends on how relevant the content is to your work and how much time it saves you.",
       },
       {
         question: "What's better for professionals: a news app or a newsletter?",
@@ -1945,7 +1945,7 @@ export const newBlogPosts: BlogPost[] = [
 
       <p>You do not need a dramatic detox or a complete news blackout. Start with one change: replace your noisiest information source with a quiet, intentional one. Swap the infinite scroll for a digest. Turn off one set of push notifications. Unsubscribe from five newsletters you never read.</p>
 
-      <p>If you want a tool that is built specifically for this, <a href="/signup">try BriefMyNews</a>. The free plan gives you 3 topics and 5 sources with a weekly digest. <a href="/pricing">Pro ($5/month)</a> unlocks unlimited topics, unlimited sources, and daily delivery, so you can stay on top of everything that matters to you without any of the noise.</p>
+      <p>If you want a tool that is built specifically for this, <a href="/signup">try BriefMyNews</a>. The free plan gives you 1 topic with a weekly digest. <a href="/pricing">Pro (\u00a34.99/month)</a> unlocks up to 5 topics, 10 sources, and daily delivery, so you can stay on top of everything that matters to you without any of the noise.</p>
     `,
     faqs: [
       {
@@ -2045,7 +2045,7 @@ export const newBlogPosts: BlogPost[] = [
       <p>Total time: 15 minutes. Total stress: minimal. Total awareness of what is happening in the world: high.</p>
 
       <h2>Getting Started</h2>
-      <p>If you are ready to break the doomscrolling cycle, the easiest first step is to <a href="/signup">sign up for BriefMyNews</a>. The free tier gives you 3 topics and 5 sources with a weekly digest, which is enough to see how curated news changes the experience. If you want daily delivery, unlimited topics, and access to 50+ sources, the <a href="/pricing">Pro plan</a> starts at just $2.50/month with annual billing.</p>
+      <p>If you are ready to break the doomscrolling cycle, the easiest first step is to <a href="/signup">sign up for BriefMyNews</a>. The free tier gives you 1 topic with a weekly digest, which is enough to see how curated news changes the experience. If you want daily delivery, up to 5 topics, and access to 90+ sources, the <a href="/pricing">Pro plan</a> starts at just \u00a32.50/month with annual billing.</p>
       <p>Your attention is valuable. Stop giving it to algorithms. Start giving it to the news that actually matters to you.</p>
     `,
     faqs: [
