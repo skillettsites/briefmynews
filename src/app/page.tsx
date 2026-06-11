@@ -173,13 +173,13 @@ export default function Home() {
               href="/signup"
               className="rounded-full bg-primary px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
             >
-              Start free
+              Try for free
             </Link>
             <Link
               href="/pricing"
               className="rounded-full border border-border bg-surface px-8 py-3 text-sm font-medium text-foreground transition-colors hover:bg-surface-hover"
             >
-              See Pro
+              Sign up to Pro
             </Link>
           </div>
           <p className="animate-fade-in-up stagger-4 mt-4 text-xs text-muted">
@@ -342,13 +342,13 @@ export default function Home() {
               href="/signup"
               className="rounded-full bg-primary px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
             >
-              Sign up free
+              Try for free
             </Link>
             <Link
               href="/pricing"
               className="rounded-full border border-border bg-surface px-8 py-3 text-sm font-medium text-foreground transition-colors hover:bg-surface-hover"
             >
-              Get Pro
+              Sign up to Pro
             </Link>
           </div>
         </div>
