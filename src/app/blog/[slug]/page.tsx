@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { blogPosts, getPostBySlug, getAllSlugs } from "@/data/blog-posts";
+import { DigestSignupCTA } from "@/components/DigestSignupCTA";
 
 export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -155,6 +156,9 @@ export default async function BlogPost({
           <p className="mt-4 text-lg text-muted">{post.description}</p>
         </header>
 
+        {/* Inline email capture (high-intent readers) */}
+        <DigestSignupCTA variant="compact" />
+
         {/* Content */}
         <div
           className="prose mt-10"
@@ -223,21 +227,8 @@ export default async function BlogPost({
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="mt-16 glass-card p-8 text-center">
-          <h2 className="text-xl font-bold text-foreground">
-            Ready to take control of your news?
-          </h2>
-          <p className="mt-2 text-sm text-muted">
-            Choose your topics, pick your sources, set your schedule. Free to start.
-          </p>
-          <Link
-            href="/signup"
-            className="mt-4 inline-block rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
-          >
-            Get Started Free
-          </Link>
-        </section>
+        {/* Email-first CTA */}
+        <DigestSignupCTA variant="hero" />
       </article>
     </>
   );

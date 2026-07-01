@@ -1,10 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function SignupPage() {
   const [email, setEmail] = useState("");
+
+  // Prefill email when arriving from a blog capture CTA (/signup?email=...).
+  useEffect(() => {
+    const e = new URLSearchParams(window.location.search).get("email");
+    if (e) setEmail(e);
+  }, []);
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");

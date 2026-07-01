@@ -21,6 +21,31 @@ interface SourceRow {
   bias_rating: string | null;
 }
 
+// New free users who haven't picked sources still deserve a broad, useful
+// digest. Default to a curated spread of high-volume, widely-trusted sources
+// rather than one arbitrary row (which produced 1-story emails). Pro defaults
+// to everything. Explicit source picks are still capped to the tier limit.
+const FREE_DEFAULT_SOURCE_COUNT = 5;
+const PREFERRED_DEFAULT_PATTERNS = [
+  /^bbc news$/i, /reuters/i, /guardian/i, /sky news/i, /independent/i,
+  /associated press|ap news/i, /npr/i, /bbc world/i, /al jazeera/i,
+];
+function defaultSourceIds(tier: "free" | "pro", all: SourceRow[]): number[] {
+  if (tier === "pro") return all.map((s) => s.id);
+  const ids: number[] = [];
+  for (const pat of PREFERRED_DEFAULT_PATTERNS) {
+    const m = all.find((s) => pat.test(s.name) && !ids.includes(s.id));
+    if (m) ids.push(m.id);
+    if (ids.length >= FREE_DEFAULT_SOURCE_COUNT) break;
+  }
+  // Top up with any remaining sources if too few matched.
+  for (const s of all) {
+    if (ids.length >= FREE_DEFAULT_SOURCE_COUNT) break;
+    if (!ids.includes(s.id)) ids.push(s.id);
+  }
+  return ids;
+}
+
 interface DigestArticle {
   title: string;
   url: string;
@@ -65,16 +90,17 @@ export async function buildUserDigest(
   const lean = politicalLeanAllowed(tier) ? storedLean : "centre";
   const sourceById = new Map<number, SourceRow>((allSources || []).map((s) => [s.id, s as SourceRow]));
 
-  // Resolve the user's enabled sources. If they have not picked any, default
-  // to all sources so a digest is never empty.
+  // Resolve the user's enabled sources. Explicit picks are capped to the tier's
+  // source limit. If they haven't picked any, use a good default set (a curated
+  // spread of broad, high-volume sources for free; all sources for pro) so the
+  // digest is genuinely useful out of the box, not one arbitrary source.
   let enabledSourceIds: number[];
   const explicitlyEnabled = (srcPrefRows || []).filter((r) => r.enabled).map((r) => r.source_id);
   if (explicitlyEnabled.length > 0) {
-    enabledSourceIds = explicitlyEnabled;
+    enabledSourceIds = explicitlyEnabled.slice(0, sourceLimit(tier));
   } else {
-    enabledSourceIds = (allSources || []).map((s) => s.id);
+    enabledSourceIds = defaultSourceIds(tier, (allSources || []) as SourceRow[]);
   }
-  enabledSourceIds = enabledSourceIds.slice(0, sourceLimit(tier));
   const enabledSet = new Set(enabledSourceIds);
 
   let topics = (topicRows || []).map((t) => ({
