@@ -29,12 +29,19 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "userId or email required" }, { status: 400 });
   }
 
+  // Free-month trial: monthly plan only, and only for first-time subscribers
+  // (guard against re-trialing anyone who already has a Stripe customer record).
+  // A card is collected up front so the subscription auto-charges £4.99 after
+  // 30 days unless the user cancels first.
+  const trialEligible = planKey === "monthly" && !user?.stripeCustomerId;
+
   try {
     const stripe = getStripe();
     const origin = req.nextUrl.origin;
     const session = await stripe.checkout.sessions.create({
       mode: "subscription",
       payment_method_types: ["card"],
+      payment_method_collection: "always",
       customer_email: email,
       line_items: [{ price: plan.priceId, quantity: 1 }],
       allow_promotion_codes: true,
@@ -43,9 +50,15 @@ export async function POST(req: NextRequest) {
       metadata: { userId: user?.id || "", plan: planKey },
       subscription_data: {
         metadata: { userId: user?.id || "", plan: planKey },
+        ...(trialEligible
+          ? {
+              trial_period_days: 30,
+              trial_settings: { end_behavior: { missing_payment_method: "cancel" } },
+            }
+          : {}),
       },
     });
-    return NextResponse.json({ url: session.url, sessionId: session.id });
+    return NextResponse.json({ url: session.url, sessionId: session.id, trial: trialEligible });
   } catch (e) {
     console.error("checkout error:", (e as Error).message);
     return NextResponse.json({ error: "Could not start checkout." }, { status: 500 });

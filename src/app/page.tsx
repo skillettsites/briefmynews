@@ -1,5 +1,6 @@
 import Link from "next/link";
 import HomePricingSection from "@/components/HomePricingSection";
+import ProCheckoutButton from "@/components/ProCheckoutButton";
 
 const features = [
   {
@@ -73,7 +74,7 @@ const faqs = [
   {
     question: "Is BriefMyNews free to use?",
     answer:
-      "Yes. The free plan gives you 1 topic with a weekly digest. For up to 5 topics, 10 sources, and daily delivery, the Pro plan is just \u00a329.99 per year.",
+      "Yes. The free plan gives you 1 topic with a weekly digest, free forever. Want more? You can try Pro (up to 5 topics, 10 sources and daily delivery) free for a month, then it's \u00a34.99/month or \u00a329.99/year. Cancel anytime before the month ends and you won't be charged.",
   },
   {
     question: "Which news sources are available?",
@@ -154,9 +155,9 @@ export default function Home() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent" />
         <div className="relative mx-auto max-w-6xl px-4 text-center sm:px-6">
           <div className="animate-fade-in-up">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-1.5 text-xs font-medium text-muted">
-              <span className="h-1.5 w-1.5 rounded-full bg-success animate-pulse" />
-              Free to start. Pro from £2.50/month.
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-4 py-1.5 text-xs font-medium text-primary">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
+              New: try Pro free for a month
             </div>
           </div>
           <h1 className="animate-fade-in-up stagger-1 mx-auto max-w-3xl text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
@@ -169,21 +170,20 @@ export default function Home() {
             Pick your topics, choose your sources, set your frequency.
           </p>
           <div className="animate-fade-in-up stagger-3 mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <ProCheckoutButton
+              plan="monthly"
+              label="Try Pro free for a month"
+              className="rounded-full bg-primary px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-primary-hover disabled:opacity-60"
+            />
             <Link
               href="/signup"
-              className="rounded-full bg-primary px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
-            >
-              Try for free
-            </Link>
-            <Link
-              href="/pricing"
               className="rounded-full border border-border bg-surface px-8 py-3 text-sm font-medium text-foreground transition-colors hover:bg-surface-hover"
             >
-              Sign up to Pro
+              Start free instead
             </Link>
           </div>
           <p className="animate-fade-in-up stagger-4 mt-4 text-xs text-muted">
-            Free forever on 1 topic. No card needed. Unsubscribe in one click.
+            One month of Pro free, then £4.99/month. Cancel anytime, no charge if you cancel before it ends. Or stay free forever on 1 topic.
           </p>
         </div>
       </section>
@@ -334,21 +334,20 @@ export default function Home() {
             Ready to take back your mornings?
           </h2>
           <p className="mt-4 text-muted">
-            Start free in under a minute. Upgrade to Pro whenever you want more
-            topics, more sources, and daily delivery.
+            Try Pro free for a month, more topics, more sources, and daily delivery.
+            Cancel anytime before it ends and you won't be charged. Or start free on 1 topic.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <ProCheckoutButton
+              plan="monthly"
+              label="Try Pro free for a month"
+              className="rounded-full bg-primary px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-primary-hover disabled:opacity-60"
+            />
             <Link
               href="/signup"
-              className="rounded-full bg-primary px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
-            >
-              Try for free
-            </Link>
-            <Link
-              href="/pricing"
               className="rounded-full border border-border bg-surface px-8 py-3 text-sm font-medium text-foreground transition-colors hover:bg-surface-hover"
             >
-              Sign up to Pro
+              Start free instead
             </Link>
           </div>
         </div>

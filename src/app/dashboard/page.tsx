@@ -284,6 +284,24 @@ export default function DashboardPage() {
     }
   }
 
+  // Opens the Stripe billing portal so a Pro / trial user can cancel or manage
+  // their subscription in one click.
+  async function manageSubscription() {
+    if (!user) return;
+    try {
+      const res = await fetch("/api/billing-portal", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId: user.id }),
+      });
+      const data = await res.json();
+      if (data.url) window.location.href = data.url;
+      else alert(data.error || "Could not open billing. Please try again shortly.");
+    } catch {
+      alert("Could not open billing. Please try again shortly.");
+    }
+  }
+
   if (loading) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
@@ -321,30 +339,37 @@ export default function DashboardPage() {
       {!isPro && (
         <div className="mb-8 flex flex-col gap-3 rounded-xl border border-primary/30 bg-primary/5 p-5 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-sm font-semibold text-foreground">Upgrade to BriefMyNews Pro</p>
+            <p className="text-sm font-semibold text-foreground">Try BriefMyNews Pro free for a month</p>
             <p className="text-sm text-muted">
-              Up to 5 topics and 10 sources, daily or monthly digests, and political-lean weighting.
+              Up to 5 topics and 10 sources, daily digests and political-lean weighting.
+              First month free, then £4.99/month. Cancel anytime, no charge if you cancel before it ends.
             </p>
           </div>
-          <div className="flex shrink-0 gap-2">
-            <button
-              onClick={() => upgradeToPro("annual")}
-              className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-            >
-              £29.99/yr
-            </button>
+          <div className="flex shrink-0 flex-col gap-2 sm:items-end">
             <button
               onClick={() => upgradeToPro("monthly")}
-              className="rounded-lg border border-primary px-4 py-2 text-sm font-semibold text-primary transition-colors hover:bg-primary/10"
+              className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
             >
-              £4.99/mo
+              Start my free month
+            </button>
+            <button
+              onClick={() => upgradeToPro("annual")}
+              className="text-xs font-semibold text-primary hover:underline"
+            >
+              or pay yearly, £29.99/yr (no free month)
             </button>
           </div>
         </div>
       )}
       {isPro && (
-        <div className="mb-8 rounded-xl border border-success/30 bg-success/5 px-5 py-3 text-sm text-success">
-          You're on BriefMyNews Pro. Thanks for supporting the project.
+        <div className="mb-8 flex flex-col gap-3 rounded-xl border border-success/30 bg-success/5 px-5 py-3 text-sm sm:flex-row sm:items-center sm:justify-between">
+          <span className="text-success">You're on BriefMyNews Pro. Thanks for supporting the project.</span>
+          <button
+            onClick={manageSubscription}
+            className="shrink-0 self-start rounded-lg border border-border px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-surface-hover sm:self-auto"
+          >
+            Manage subscription
+          </button>
         </div>
       )}
 

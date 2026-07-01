@@ -84,7 +84,7 @@ export default function HomePricingSection() {
             <p className="mt-1 text-xs text-muted">
               {isYearly
                 ? "Just £2.50/month. Cancel anytime."
-                : "Or save 50% with yearly billing at £29.99/year."}
+                : "First month free, then £4.99/month. Cancel anytime, no charge if you cancel before it ends."}
             </p>
             <ul className="mt-6 space-y-3">
               {[
@@ -119,7 +119,7 @@ export default function HomePricingSection() {
             </ul>
             <ProCheckoutButton
               plan={isYearly ? "annual" : "monthly"}
-              label="Sign up to Pro"
+              label={isYearly ? "Sign up to Pro" : "Start your free month"}
               className="mt-8 block w-full rounded-full bg-primary py-2.5 text-center text-sm font-medium text-white transition-colors hover:bg-primary-hover disabled:opacity-60"
             />
             <Link

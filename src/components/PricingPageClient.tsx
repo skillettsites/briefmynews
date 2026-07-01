@@ -33,7 +33,7 @@ const getPlans = (isYearly: boolean) => [
     period: isYearly ? "year" : "month",
     subtitle: isYearly
       ? "Just £2.50/month. Cancel anytime."
-      : "Or save 50% with yearly billing at £29.99/year.",
+      : "First month free, then £4.99/month. Cancel anytime, no charge if you cancel before it ends.",
     description:
       "Save 2+ hours per week. Full control over topics, sources, and delivery.",
     features: [
@@ -48,10 +48,10 @@ const getPlans = (isYearly: boolean) => [
       { text: "Custom digest formatting", included: true },
       { text: "Email support", included: true },
     ],
-    cta: "Upgrade to Pro",
+    cta: isYearly ? "Upgrade to Pro" : "Start your free month",
     ctaLink: "/signup",
     highlight: true,
-    badge: isYearly ? "Save 50%" : "Most Popular",
+    badge: isYearly ? "Save 50%" : "1 month free",
   },
 ];
 
