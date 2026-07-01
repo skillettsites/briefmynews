@@ -42,7 +42,9 @@ function ConfirmInner() {
       }
       setStatus("success");
       setMessage("Email confirmed. Taking you to your dashboard…");
-      setTimeout(() => router.replace("/dashboard"), 800);
+      const topic = searchParams.get("topic");
+      const dest = topic ? `/dashboard?topic=${encodeURIComponent(topic)}` : "/dashboard";
+      setTimeout(() => router.replace(dest), 800);
     })();
 
     return () => {

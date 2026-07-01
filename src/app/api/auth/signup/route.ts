@@ -15,7 +15,7 @@ function escapeHtml(s: string): string {
 
 export async function POST(request: Request) {
   try {
-    const { email, password, displayName } = await request.json();
+    const { email, password, displayName, topic } = await request.json();
 
     if (!email || typeof email !== "string") {
       return Response.json({ error: "Email is required" }, { status: 400 });
@@ -82,9 +82,13 @@ export async function POST(request: Request) {
     // Build our own confirmation URL so the click flow stays on briefmynews.com
     // (the shared Supabase project has its Site URL pointed at another domain,
     // so action_link would redirect users away).
+    const topicParam =
+      topic && typeof topic === "string" && topic.trim()
+        ? `&topic=${encodeURIComponent(topic.trim().slice(0, 80))}`
+        : "";
     const confirmUrl = `${origin}/auth/confirm?token_hash=${encodeURIComponent(
       data.properties.hashed_token
-    )}&type=signup`;
+    )}&type=signup${topicParam}`;
     const safeLink = escapeHtml(confirmUrl);
     const safeName = displayName ? escapeHtml(String(displayName)) : "";
     const greeting = safeName ? `Hi ${safeName},` : "Hi,";

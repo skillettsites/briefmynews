@@ -139,10 +139,40 @@ export default function DashboardPage() {
 
       setUser(currentUser);
       await loadUserData(currentUser.id);
+      await applyPendingTopic(currentUser.id);
       setLoading(false);
     }
     checkAuth();
   }, [loadUserData]);
+
+  // Apply the topic a user chose at signup (carried via ?topic= or localStorage)
+  // so their first digest is never empty. Only runs when they have no topic yet.
+  async function applyPendingTopic(userId: string) {
+    try {
+      const url = new URL(window.location.href);
+      let pending = url.searchParams.get("topic");
+      if (!pending) { try { pending = localStorage.getItem("bmn_pending_topic"); } catch { /* ignore */ } }
+      if (pending) pending = pending.trim().slice(0, 80);
+      // Always clear the carriers so a refresh can't re-apply.
+      try { localStorage.removeItem("bmn_pending_topic"); } catch { /* ignore */ }
+      if (url.searchParams.has("topic")) {
+        url.searchParams.delete("topic");
+        window.history.replaceState({}, "", url.pathname + (url.search || ""));
+      }
+      if (!pending) return;
+
+      const { data: existing } = await supabase
+        .from("bmn_user_topics").select("topic").eq("user_id", userId).limit(1);
+      if (existing && existing.length > 0) return; // already has a topic
+
+      const res = await fetch("/api/user/topics", {
+        method: "POST",
+        headers: await authHeaders(),
+        body: JSON.stringify({ topics: [{ topic: pending, frequency: "weekly" }] }),
+      });
+      if (res.ok) setTopics([{ topic: pending, frequency: "weekly" }]);
+    } catch { /* non-fatal */ }
+  }
 
   function addTopic() {
     if (!newTopic.trim()) return;
