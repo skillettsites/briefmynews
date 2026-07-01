@@ -155,12 +155,17 @@ export default function DashboardPage() {
       return;
     }
     setUpgradePrompt("");
-    setTopics([...topics, { topic: newTopic.trim(), frequency: "weekly" }]);
+    const next = [...topics, { topic: newTopic.trim(), frequency: "weekly" }];
+    setTopics(next);
     setNewTopic("");
+    // Persist immediately so users don't lose the topic by missing the Save button.
+    void saveTopics(next);
   }
 
   function removeTopic(index: number) {
-    setTopics(topics.filter((_, i) => i !== index));
+    const next = topics.filter((_, i) => i !== index);
+    setTopics(next);
+    void saveTopics(next);
   }
 
   function updateTopicFrequency(index: number, frequency: string) {
@@ -178,12 +183,12 @@ export default function DashboardPage() {
     };
   }
 
-  async function saveTopics() {
+  async function saveTopics(next?: { topic: string; frequency: string }[]) {
     if (!user) return;
     const res = await fetch("/api/user/topics", {
       method: "POST",
       headers: await authHeaders(),
-      body: JSON.stringify({ topics }),
+      body: JSON.stringify({ topics: next ?? topics }),
     });
     if (!res.ok) {
       const data = await res.json().catch(() => ({}));
@@ -202,6 +207,7 @@ export default function DashboardPage() {
     }
     setUpgradePrompt("");
     updateTopicFrequency(index, frequency);
+    void saveTopics(topics.map((t, i) => (i === index ? { ...t, frequency } : t)));
   }
 
   async function toggleSource(slug: string) {
@@ -502,7 +508,7 @@ export default function DashboardPage() {
             )}
 
             <button
-              onClick={saveTopics}
+              onClick={() => saveTopics()}
               className="mt-4 rounded-lg bg-primary px-6 py-2 text-sm font-medium text-white hover:bg-primary-hover transition-colors"
             >
               Save Topics
@@ -657,7 +663,7 @@ export default function DashboardPage() {
                 </div>
               ))}
               <button
-                onClick={saveTopics}
+                onClick={() => saveTopics()}
                 className="mt-4 rounded-lg bg-primary px-6 py-2 text-sm font-medium text-white hover:bg-primary-hover transition-colors"
               >
                 Save Schedule
