@@ -1,6 +1,13 @@
 import Link from "next/link";
 import HomePricingSection from "@/components/HomePricingSection";
 import ProCheckoutButton from "@/components/ProCheckoutButton";
+import TodaysBriefing from "@/components/TodaysBriefing";
+
+// The briefing strip reads pre-summarised articles from Supabase. ISR keeps the
+// page statically served (fast TTFB, stable Core Web Vitals) while refreshing
+// the stories half-hourly. Nothing above the fold changes, so the homepage's
+// existing search targeting is untouched.
+export const revalidate = 1800;
 
 const features = [
   {
@@ -187,6 +194,9 @@ export default function Home() {
           </p>
         </div>
       </section>
+
+      {/* Today's briefing: a live sample of the real product, below the fold */}
+      <TodaysBriefing />
 
       {/* Problem Statement */}
       <section className="border-t border-border bg-surface py-16 sm:py-20">

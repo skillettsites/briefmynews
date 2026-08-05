@@ -1,16 +1,29 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAdmin } from "@/lib/admin";
-import { fetchRSSFeed } from "@/lib/rss";
+import { fetchRSSFeed, parseFeedDate } from "@/lib/rss";
 import { authorizeCron } from "@/lib/cron-auth";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
-function safeDate(input: string | null): string | null {
-  if (!input) return null;
-  const d = new Date(input);
-  return isNaN(d.getTime()) ? null : d.toISOString();
+// The digest builder filters on published_at, so a NULL there makes an article
+// permanently invisible to every user. Rather than store NULL when a feed's
+// date is missing or unparseable, fall back to fetch time so it can never
+// silently disappear from digests again. parseFeedDate already handles named
+// timezones like BST that JavaScript's Date rejects outright.
+//
+// The fallback is backdated by INFERRED_DATE_PENALTY. digest.ts scores
+// recency as `1 - ageDays / (lookback * 2)`, so stamping an inferred date as
+// "now" would hand it the maximum possible recency and let articles with broken
+// dates outrank genuinely fresh ones that carry a real timestamp. Backdating a
+// few hours keeps them eligible without letting a guess beat a fact.
+const INFERRED_DATE_PENALTY_MS = 6 * 3600_000;
+
+function safeDate(input: string | null, seenAtMs: number): string {
+  const parsed = parseFeedDate(input);
+  if (parsed) return parsed;
+  return new Date(seenAtMs - INFERRED_DATE_PENALTY_MS).toISOString();
 }
 
 // Fetch every active source's RSS feed and upsert new articles into
@@ -51,6 +64,7 @@ export async function GET(req: NextRequest) {
       try {
         const items = await fetchRSSFeed(src.rss_url);
         fetched += items.length;
+        const seenAtMs = Date.now();
         const rows = items
           .filter((a) => a.url && a.title)
           .slice(0, 40)
@@ -59,7 +73,7 @@ export async function GET(req: NextRequest) {
             title: a.title.slice(0, 500),
             url: a.url,
             description: (a.description || "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim().slice(0, 1000),
-            published_at: safeDate(a.published_at),
+            published_at: safeDate(a.published_at, seenAtMs),
           }));
         if (rows.length > 0) {
           const { error: upErr, count } = await admin

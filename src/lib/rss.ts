@@ -8,6 +8,7 @@ interface RSSItem {
   summary?: string;
   pubDate?: string;
   published?: string;
+  updated?: string;
   "dc:date"?: string;
   "@_href"?: string;
 }
@@ -23,6 +24,52 @@ const parser = new XMLParser({
   ignoreAttributes: false,
   attributeNamePrefix: "@_",
 });
+
+// JavaScript's Date only understands GMT/UTC and numeric offsets. Several
+// publishers stamp pubDate with a named timezone instead ("... 10:42:00 BST"),
+// which parses to Invalid Date and silently becomes a NULL published_at. Any
+// article with a NULL published_at is then invisible to the digest builder,
+// which filters on published_at. Sky Sports hit exactly this: it publishes in
+// BST, so every one of its articles vanished from digests for the whole of
+// British Summer Time and would have quietly fixed itself in the winter when
+// the same feed switches to GMT.
+//
+// Only unambiguous abbreviations are mapped. IST is deliberately excluded
+// (India +0530, Irish +0100 and Israel +0200 all use it); those fall through
+// to the fetch-time fallback, which is accurate to within a few hours.
+const TZ_OFFSETS: Record<string, string> = {
+  UT: "+0000", UTC: "+0000", GMT: "+0000", Z: "+0000", WET: "+0000",
+  BST: "+0100", CET: "+0100", WEST: "+0100",
+  CEST: "+0200", EET: "+0200", SAST: "+0200",
+  EEST: "+0300", MSK: "+0300",
+  EST: "-0500", EDT: "-0400", CST: "-0600", CDT: "-0500",
+  MST: "-0700", MDT: "-0600", PST: "-0800", PDT: "-0700",
+  AKST: "-0900", AKDT: "-0800", HST: "-1000",
+  JST: "+0900", KST: "+0900", HKT: "+0800", SGT: "+0800",
+  AEST: "+1000", AEDT: "+1100", NZST: "+1200", NZDT: "+1300",
+};
+
+// Parse an RSS/Atom date to an ISO string. Returns null only when the input is
+// genuinely unusable, so callers can apply their own fallback.
+export function parseFeedDate(input: string | null | undefined): string | null {
+  if (!input) return null;
+  const raw = String(input).trim();
+  if (!raw) return null;
+
+  const direct = new Date(raw);
+  if (!isNaN(direct.getTime())) return direct.toISOString();
+
+  // Retry with a trailing named timezone swapped for its numeric offset.
+  const m = raw.match(/\s([A-Z]{1,5})$/);
+  if (m) {
+    const offset = TZ_OFFSETS[m[1].toUpperCase()];
+    if (offset) {
+      const retry = new Date(raw.replace(/\s[A-Z]{1,5}$/, ` ${offset}`));
+      if (!isNaN(retry.getTime())) return retry.toISOString();
+    }
+  }
+  return null;
+}
 
 // Many publishers (Reddit, FT, Telegraph, Investing.com) reject the literal
 // "BriefMyNews/1.0" UA with a 403. A browser-shaped UA gets through everywhere
@@ -88,7 +135,9 @@ export async function fetchRSSFeed(url: string, timeoutMs = 10000): Promise<Pars
       title: str(item.title),
       url: linkOf(item),
       description: str(item.description ?? item.summary),
-      published_at: str(item.pubDate ?? item["dc:date"] ?? item.published) || null,
+      published_at:
+        parseFeedDate(str(item.pubDate ?? item["dc:date"] ?? item.published ?? item.updated)) ||
+        null,
     }));
   } catch (error) {
     console.error(`Error fetching RSS from ${url}:`, (error as Error).message);
