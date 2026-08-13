@@ -168,9 +168,10 @@ export default function Home() {
             </div>
           </div>
           <h1 className="animate-fade-in-up stagger-1 mx-auto max-w-3xl text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-            Your news. Your sources.{" "}
-            <span className="gradient-text">Your schedule.</span>{" "}
-            Nothing&nbsp;else.
+            <span className="block">Your news.</span>
+            <span className="block">Your sources.</span>
+            <span className="gradient-text block">Your schedule.</span>
+            <span className="block">Nothing&nbsp;else.</span>
           </h1>
           <p className="animate-fade-in-up stagger-2 mx-auto mt-6 max-w-2xl text-lg text-muted sm:text-xl">
             A personalised news digest that delivers only what matters to you.
