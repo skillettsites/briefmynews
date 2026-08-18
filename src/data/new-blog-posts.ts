@@ -2081,4 +2081,85 @@ export const newBlogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "ground-news-alternative-uk",
+    title: "Ground News Alternative: 5 Options Compared (2026)",
+    description:
+      "Ground News Vantage costs £6.25 a month billed annually. Here are five alternatives for bias-aware news in 2026, what each one actually does, and which is worth paying for.",
+    publishedAt: "2026-08-18",
+    updatedAt: "2026-08-18",
+    content: `
+      <p><strong>Short answer:</strong> if you want to investigate how a single story is being covered across the political spectrum, Ground News is still the most complete tool and worth its price. If what you actually want is a scheduled email on your own topics with a lean preference applied, you are paying for an app you rarely open. This guide covers both cases honestly, including where the alternatives beat us.</p>
+
+      <p>Ground News built its reputation on one genuinely useful idea: show the same story as reported by outlets on the left, centre and right, and make the gaps visible. Its paid Vantage tier costs <strong>£6.25 per month billed annually</strong>, which works out at roughly £75 a year, and includes blindspot analysis, a global coverage map, full coverage comparison, ownership and funding transparency, bias and factuality ratings, and a personal news bias dashboard. There is a free tier as well.</p>
+
+      <p>People start looking for an alternative for three main reasons: the annual cost, the fact that it is app-first when they would rather just get an email, or because they want control over specific topics rather than a general feed.</p>
+
+      <h2>The five alternatives, compared</h2>
+
+      <div class="overflow-x-auto my-6">
+      <table class="min-w-full border border-gray-200 rounded-lg text-sm">
+      <thead class="bg-gray-50"><tr><th class="px-4 py-2 text-left">Service</th><th class="px-4 py-2 text-left">Price</th><th class="px-4 py-2 text-left">Format</th><th class="px-4 py-2 text-left">Bias tooling</th><th class="px-4 py-2 text-left">Best for</th></tr></thead>
+      <tbody>
+      <tr><td class="px-4 py-2 border-t"><strong>Ground News</strong></td><td class="px-4 py-2 border-t">£6.25/mo billed annually, plus a free tier</td><td class="px-4 py-2 border-t">App and web</td><td class="px-4 py-2 border-t">The most complete: blindspot, ownership, factuality ratings</td><td class="px-4 py-2 border-t">Investigating how one story is covered</td></tr>
+      <tr><td class="px-4 py-2 border-t"><strong>AllSides</strong></td><td class="px-4 py-2 border-t">Free</td><td class="px-4 py-2 border-t">Web</td><td class="px-4 py-2 border-t">Left, centre and right side by side</td><td class="px-4 py-2 border-t">Free bias comparison with no signup</td></tr>
+      <tr><td class="px-4 py-2 border-t"><strong>Mailbrew</strong></td><td class="px-4 py-2 border-t">Free since November 2025</td><td class="px-4 py-2 border-t">Email digest</td><td class="px-4 py-2 border-t">None</td><td class="px-4 py-2 border-t">Pulling RSS, newsletters and social into one email</td></tr>
+      <tr><td class="px-4 py-2 border-t"><strong>Feedly</strong></td><td class="px-4 py-2 border-t">Free tier, paid plans above it</td><td class="px-4 py-2 border-t">App and web reader</td><td class="px-4 py-2 border-t">None</td><td class="px-4 py-2 border-t">Power users who want full RSS control</td></tr>
+      <tr><td class="px-4 py-2 border-t"><strong>BriefMyNews</strong></td><td class="px-4 py-2 border-t">Free tier, Pro £4.99/mo or £29.99/yr</td><td class="px-4 py-2 border-t">Email digest</td><td class="px-4 py-2 border-t">Political lean weighting on Pro</td><td class="px-4 py-2 border-t">A scheduled email on your own narrow topics</td></tr>
+      </tbody>
+      </table>
+      </div>
+
+      <h2>Where Ground News is genuinely better</h2>
+      <p>We should be straight about this, because pretending otherwise helps nobody. Ground News does things no email digest can. Its blindspot feed showing stories covered heavily by one side and ignored by the other is a real product with no direct equivalent. Its ownership and funding data tells you who is behind an outlet. Its factuality ratings are applied consistently across thousands of sources.</p>
+      <p>If your goal is to take a single contested story and pull it apart, that is what Ground News is for, and £75 a year is a fair price for it. No alternative in this list replaces that.</p>
+
+      <h2>Where the free options are enough</h2>
+      <p><strong>AllSides</strong> is free and does the core left, centre, right comparison. If bias comparison is the only reason you were considering Ground News, start here and see whether you need more.</p>
+      <p><strong>Mailbrew</strong> deserves a mention because its situation changed. It was acquired by Evernomic in November 2025, rebuilt, and made free. It pulls RSS, newsletters, Reddit, Hacker News and YouTube into a single scheduled email. It has no bias analysis at all, so it is not a Ground News replacement, but if you simply want one email instead of forty, it costs nothing and it is the obvious first thing to try.</p>
+
+      <h2>Where an email digest wins instead</h2>
+      <p>There is a specific reader that all of the above serves badly: someone who does not want to open another app, wants a handful of narrow topics rather than a general feed, and wants a say in the political balance of what arrives.</p>
+      <p>That is the case <strong>BriefMyNews</strong> is built for. You pick specific topics rather than broad categories, so "NHS waiting times" or "UK housing policy" rather than "Health" or "Politics". You tick and untick individual sources. On Pro you set a political lean preference so the weighting reflects what you want, and you choose whether each topic arrives daily, weekly or monthly. It arrives as an email, so there is nothing to open and nothing to scroll.</p>
+      <p>The free tier covers one topic, one source, weekly. Pro is £4.99 a month or £29.99 a year, which is under half the annual cost of Ground News Vantage. That is not because it does more. It does less, in a narrower way, for people who want an email rather than an app.</p>
+
+      <h2>How to choose</h2>
+      <ul>
+        <li><strong>You want to dissect how a story is being covered.</strong> Stay with Ground News. Nothing here replaces the blindspot and ownership data.</li>
+        <li><strong>You only wanted the left, centre, right view.</strong> Use AllSides, free.</li>
+        <li><strong>You want fewer emails, not bias analysis.</strong> Use Mailbrew, now free.</li>
+        <li><strong>You want deep RSS control and do not care about bias tooling.</strong> Use Feedly.</li>
+        <li><strong>You want narrow topics, source control and a lean preference delivered by email.</strong> That is what we built BriefMyNews for.</li>
+      </ul>
+
+      <p>Prices and tiers were checked on 18 August 2026 against each provider. They change, so confirm before you subscribe to anything.</p>
+    `,
+    faqs: [
+      {
+        question: "How much does Ground News cost in 2026?",
+        answer:
+          "Ground News Vantage is listed at £6.25 per month billed annually, which is roughly £75 a year. There is also a free tier. Checked 18 August 2026.",
+      },
+      {
+        question: "Is there a free alternative to Ground News?",
+        answer:
+          "Yes. AllSides offers left, centre and right coverage comparison for free with no signup. Mailbrew has been free since Evernomic acquired it in November 2025, though it has no bias analysis. BriefMyNews has a free tier covering one topic and one source, delivered weekly.",
+      },
+      {
+        question: "Is Mailbrew still running?",
+        answer:
+          "Yes. Mailbrew was acquired by Evernomic in November 2025, rebuilt, and made free to use. It had over 70,000 users at the time of acquisition. It aggregates RSS, newsletters, Reddit, Hacker News and YouTube into a scheduled email, but it does not offer bias or political lean features.",
+      },
+      {
+        question: "What is the difference between Ground News and BriefMyNews?",
+        answer:
+          "Ground News is an app-first research tool for examining how a single story is covered across the political spectrum, with blindspot analysis, ownership data and factuality ratings. BriefMyNews is an email-first digest where you choose narrow topics, tick individual sources, set a political lean preference and pick the delivery frequency. Ground News does far more bias analysis; BriefMyNews does scheduled email delivery of your own topics at £29.99 a year against roughly £75.",
+      },
+      {
+        question: "Which Ground News alternative is best for UK news?",
+        answer:
+          "It depends what you want. For free bias comparison, AllSides covers UK outlets but is US-centric. For a UK-focused email digest where you select British sources like the BBC, Guardian or Telegraph individually and set a lean preference, BriefMyNews is built for that case.",
+      },
+    ],
+  },
 ];
